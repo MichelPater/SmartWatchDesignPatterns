@@ -6,7 +6,7 @@
         <TabControl HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497">
             <TabItem Header="Clock">
                 <Grid Background="#FFE5E5E5">
-                    <Button Content="Button" HorizontalAlignment="Left" Margin="63,59,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="63,59,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Timer">
