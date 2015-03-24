@@ -10,10 +10,10 @@
             <TabItem Header="Timer">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="StopWatch" Margin="-2,-2,-2,0">
+            <TabItem Header="StopWatch">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Settings" Margin="-2,-2,-2,0">
+            <TabItem Header="Settings">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
