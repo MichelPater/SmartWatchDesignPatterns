@@ -1,42 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RedditSharp.Things;
 using RedditSharp;
-
+using RedditSharp.Things;
 
 namespace SmartWatchDesignPatterns.RedditAPI
 {
-    class PostBuilder
+    internal class PostBuilder
     {
-        private String subredditName = String.Empty;
-        private Reddit reddit = new RedditSharp.Reddit();
-        private Subreddit subreddit;
-        private int amountOfPosts = 20;
-        private FromTime timePeriod = FromTime.Week;
+        private readonly Reddit _reddit = new Reddit();
+        private readonly Subreddit _subreddit;
+        private readonly FromTime timePeriod = FromTime.Week;
+        private String _subredditName;
+        private int _amountOfPosts = 20;
 
-          
         /// <summary>
-        /// Constructor with changeable subredditname
+        ///     Constructor with changeable subredditname
         /// </summary>
         /// <param name="subbredditName"></param>
         public PostBuilder(String subbredditName)
         {
-            this.subredditName = subbredditName;
-            subreddit = reddit.GetSubreddit(subredditName);
+            _subredditName = subbredditName;
+            _subreddit = _reddit.GetSubreddit(_subredditName);
         }
 
+        public String SubredditName
+        {
+            get { return _subredditName; }
+            set { _subredditName = value; }
+        }
+
+        public int AmountOfPosts
+        {
+            get { return _amountOfPosts; }
+            set { _amountOfPosts = value; }
+        }
 
         /// <summary>
-        /// Gets a list of posts from a defined subreddit
+        ///     Gets a list of posts from a defined subreddit
         /// </summary>
         /// <returns></returns>
-        public List<Post> getPosts()
+        public List<Post> GetPosts()
         {
-            List<Post> posts =new List<Post>();
-            foreach (Post post in subreddit.GetTop(timePeriod).Take(amountOfPosts))
+            var posts = new List<Post>();
+            foreach (var post in _subreddit.GetTop(timePeriod).Take(_amountOfPosts))
             {
                 posts.Add(post);
             }

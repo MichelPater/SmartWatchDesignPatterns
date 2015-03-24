@@ -28,7 +28,7 @@ namespace SmartWatchDesignPatterns
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             RedditAPI.PostBuilder postBuilder = new RedditAPI.PostBuilder("r/ProgrammerHumor");
-            List<RedditSharp.Things.Post> posts = postBuilder.getPosts();
+            List<RedditSharp.Things.Post> posts = postBuilder.GetPosts();
 
             foreach(var post in posts)
             {
