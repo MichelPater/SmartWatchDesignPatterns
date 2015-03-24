@@ -24,5 +24,16 @@ namespace SmartWatchDesignPatterns
         {
             InitializeComponent();
         }
+        /*
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RedditAPI.PostBuilder postBuilder = new RedditAPI.PostBuilder("r/ProgrammerHumor");
+            List<RedditSharp.Things.Post> posts = postBuilder.getPosts();
+
+            foreach(var post in posts)
+            {
+                Console.WriteLine(post.Title);
+            }
+        }*/
     }
 }
