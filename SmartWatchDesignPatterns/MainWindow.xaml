@@ -3,6 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <TabControl HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Clock">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Timer">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="StopWatch" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
