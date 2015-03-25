@@ -2,17 +2,17 @@
 
 namespace SmartWatchDesignPatterns.DesignPatterns
 {
-    class Singelton
+    class TimeSingelton
     {
 
-        Singelton()
+        TimeSingelton()
         {
             
         }
 
-        static readonly Singelton Instance = new Singelton();
+        static readonly TimeSingelton Instance = new TimeSingelton();
 
-        public static Singelton UniqueInstance
+        public static TimeSingelton UniqueInstance
         {
             get { return Instance; }
         }
