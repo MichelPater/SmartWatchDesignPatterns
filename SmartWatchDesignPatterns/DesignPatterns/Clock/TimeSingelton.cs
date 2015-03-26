@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SmartWatchDesignPatterns.DesignPatterns
+namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 {
     class TimeSingelton
     {

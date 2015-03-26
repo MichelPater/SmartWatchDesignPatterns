@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace SmartWatchDesignPatterns
 {
     /// <summary>
@@ -23,6 +22,13 @@ namespace SmartWatchDesignPatterns
         public MainWindow()
         {
             InitializeComponent();
+
+            timeLabel.Content  ="00:00";
+
+            var datetime = DateTime.Now;
+            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
+
+
         }
 
 
