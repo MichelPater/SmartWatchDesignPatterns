@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartWatchDesignPatterns.DesignPatterns.Timer;
 namespace SmartWatchDesignPatterns
 {
     /// <summary>
@@ -28,10 +29,15 @@ namespace SmartWatchDesignPatterns
             var datetime = DateTime.Now;
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
-
+            
         }
 
+        private void Timer_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Timer testtimer = new Timer(new DefaultState(), 12, 12);
 
+            StateNameLabel.Content = testtimer.State.getColor();
+        }
 
 
 
