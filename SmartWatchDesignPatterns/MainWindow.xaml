@@ -10,7 +10,15 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Timer">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Button Content="DisplayState" HorizontalAlignment="Left" Height="25" Margin="9,144,0,0" VerticalAlignment="Top" Width="92" Click="Timer_Button_Click"/>
+                    <Label x:Name="StateNameLabel" Content="StateName" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,50,0,0" Width="90" Grid.Column="2"/>
+                    <Label x:Name="StateColorLabel" Content="Color" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,81,0,0" Width="78" Grid.Column="2"/>
+                    <Button Content="Set Timer" HorizontalAlignment="Left" Margin="133,147,0,0" VerticalAlignment="Top" Width="75" Click="Set_Timer"/>
+                    <Button Content="Start Timer" HorizontalAlignment="Left" Margin="260,147,0,0" VerticalAlignment="Top" Width="75" Click="Start_Timer"/>
+                    <Button Content="Pauze Timer" HorizontalAlignment="Left" Margin="379,147,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Content="Stop/Reset Timer" HorizontalAlignment="Left" Margin="182,215,0,0" VerticalAlignment="Top" Width="75" Click="Undo_Timer"/>
+                </Grid>
             </TabItem>
             <TabItem Header="StopWatch">
                 <Grid Background="#FFE5E5E5"/>
