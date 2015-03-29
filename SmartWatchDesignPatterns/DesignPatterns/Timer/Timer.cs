@@ -108,7 +108,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
             return second;
         }
 
-        private static void TimeTickEvent(Object myObject, EventArgs myEventArgs)
+        private void TimeTickEvent(Object myObject, EventArgs myEventArgs)
         {
             if (minute == 0 && second == 0)
             {
@@ -127,8 +127,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
                 }
             }
         }
-
-        public static void Main()
+        public void Main()
         {
             myTimer.Tick += new EventHandler(TimeTickEvent);
 
