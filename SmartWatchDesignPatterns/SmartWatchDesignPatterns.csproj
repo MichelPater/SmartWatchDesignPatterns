@@ -60,6 +60,7 @@
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\MinuteHandler.cs" />
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\SecondHandler.cs" />
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\TimeHandler.cs" />
+    <Compile Include="DesignPatterns\Clock\TimeDisplay.cs" />
     <Compile Include="DesignPatterns\Stopwatch\Stopwatch.cs" />
     <Compile Include="DesignPatterns\Timer\Timer.cs" />
     <Compile Include="RedditAPI\PostBuilder.cs" />
