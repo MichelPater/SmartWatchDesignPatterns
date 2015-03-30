@@ -56,7 +56,7 @@ namespace SmartWatchDesignPatterns
 
         private void Timer_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            //StateNameLabel.Content = t.getColor();
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
