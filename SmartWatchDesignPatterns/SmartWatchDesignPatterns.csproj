@@ -56,6 +56,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DesignPatterns\Clock\Clock.cs" />
+    <Compile Include="DesignPatterns\Clock\HourHandler.cs" />
+    <Compile Include="DesignPatterns\Clock\MinuteHandler.cs" />
+    <Compile Include="DesignPatterns\Clock\SecondHandler.cs" />
+    <Compile Include="DesignPatterns\Clock\TimeHandler.cs" />
     <Compile Include="DesignPatterns\Stopwatch\Stopwatch.cs" />
     <Compile Include="DesignPatterns\Timer\Timer.cs" />
     <Compile Include="RedditAPI\PostBuilder.cs" />
