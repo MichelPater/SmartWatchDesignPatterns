@@ -2,7 +2,7 @@
 {
     class SecondHandler : TimeHandler
     {
-        public int Minute
+        public int Second
         {
             get { return _second; }
             set { _second = value; }
