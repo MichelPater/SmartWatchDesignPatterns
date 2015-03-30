@@ -18,7 +18,7 @@
             }
             else if (succesor != null)
             {
-                Tick();
+                succesor.Tick();
                 _second = 0;
             }
             

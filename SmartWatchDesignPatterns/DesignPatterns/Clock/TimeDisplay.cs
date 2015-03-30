@@ -20,7 +20,11 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 
             _timer.Enabled = true; 
 
-            InitializeTime();
+            //InitializeTime();
+
+            _secondHandler.Second = 55;
+            _minuteHandler.Minute = 58;
+            _hourHandler.Hour = 23;
         }
 
         public void InitializeTime()
