@@ -16,7 +16,7 @@
                     <Label x:Name="StateColorLabel" Content="Color" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,81,0,0" Width="78" Grid.Column="2"/>
                     <Button Content="Set Timer" HorizontalAlignment="Left" Margin="133,147,0,0" VerticalAlignment="Top" Width="75" Click="Set_Timer"/>
                     <Button Content="Start Timer" HorizontalAlignment="Left" Margin="260,147,0,0" VerticalAlignment="Top" Width="75" Click="Start_Timer"/>
-                    <Button Content="Pauze Timer" HorizontalAlignment="Left" Margin="379,147,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Content="Pauze Timer" HorizontalAlignment="Left" Margin="379,147,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
                     <Button Content="Stop/Reset Timer" HorizontalAlignment="Left" Margin="182,215,0,0" VerticalAlignment="Top" Width="75" Click="Undo_Timer"/>
                 </Grid>
             </TabItem>

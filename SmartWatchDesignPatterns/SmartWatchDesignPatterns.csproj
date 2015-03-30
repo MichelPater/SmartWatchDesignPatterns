@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RedditSharp">
+      <HintPath>C:\Users\Gerjan van Oenen\Desktop\RedditSharp-master\RedditSharp\obj\Debug\RedditSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -62,6 +65,7 @@
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\TimeHandler.cs" />
     <Compile Include="DesignPatterns\Clock\TimeDisplay.cs" />
     <Compile Include="DesignPatterns\Stopwatch\Stopwatch.cs" />
+    <Compile Include="DesignPatterns\Timer\StatePattern.cs" />
     <Compile Include="DesignPatterns\Timer\Timer.cs" />
     <Compile Include="RedditAPI\PostBuilder.cs" />
     <Page Include="MainWindow.xaml">
@@ -104,12 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="C:\Users\Michel\Desktop\RedditSharp-master\RedditSharp\RedditSharp.csproj">
-      <Project>{a368cb75-75f0-4489-904d-b5cebb0fe624}</Project>
-      <Name>RedditSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
