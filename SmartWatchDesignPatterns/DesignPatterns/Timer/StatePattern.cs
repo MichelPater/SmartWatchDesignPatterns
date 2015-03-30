@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Timer
 {
-    class StatePattern
+    public class StatePattern
     {
-        State state = new DefaultState();
-
-
+        
+            State state = new DefaultState();
+        
+    }
         abstract class State
         {
-            public State state;
-            public abstract void StateUpdate(Timer timer);
-            public string color;
+            public abstract void StateUpdate(State state);
+            public abstract string getColor();
+            
         }
 
         /*Alle states die worden gebruikt
@@ -26,45 +27,67 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
          */
         class DefaultState : State
         {
-            public override void StateUpdate(Timer timer)
+            string color = "blue";
+            string stateName = "Default";
+
+            public override void StateUpdate(State state)
             {
                 state = new DefaultState();
             }
 
-            new string color = "blue";
-            string stateName = "Default";
+            public override string getColor()
+            {
+                return color;
+            }
+
+            
 
         }
 
         class RunningState : State
         {
-            public override void StateUpdate(Timer timer)
+            public override void StateUpdate(State state)
             {
                 state = new PauzeState();
             }
-            new string color = "green";
+            string color = "green";
             string stateName = "Running";
+
+            public override string getColor()
+            {
+                return color;
+            }
         }
 
         class AlarmState : State
         {
-            public override void StateUpdate(Timer timer)
+            public override void StateUpdate(State state)
             {
                 state = new AlarmState();
             }
-            new string color = "red";
+            string color = "red";
             string stateName = "Alarmed";
+
+            public override string getColor()
+            {
+                return color;
+            }
         }
 
         class PauzeState : State
         {
-            public override void StateUpdate(Timer timer)
+            public override void StateUpdate(State state)
             {
                 state = new RunningState();
             }
-            new string color = "lightblue";
+            string color = "lightblue";
             string stateName = "Pauze";
 
+            public override string getColor()
+            {
+                return color;
+            }
+
         }
-    }
 }
+

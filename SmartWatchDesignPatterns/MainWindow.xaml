@@ -11,13 +11,15 @@
             </TabItem>
             <TabItem Header="Timer">
                 <Grid Background="#FFE5E5E5">
-                    <Button Content="DisplayState" HorizontalAlignment="Left" Height="25" Margin="9,144,0,0" VerticalAlignment="Top" Width="92" Click="Timer_Button_Click"/>
+                    <Button Content="DisplayState" HorizontalAlignment="Left" Height="25" Margin="260,199,0,0" VerticalAlignment="Top" Width="92" Click="Timer_Button_Click"/>
                     <Label x:Name="StateNameLabel" Content="StateName" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,50,0,0" Width="90" Grid.Column="2"/>
                     <Label x:Name="StateColorLabel" Content="Color" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,81,0,0" Width="78" Grid.Column="2"/>
-                    <Button Content="Set Timer" HorizontalAlignment="Left" Margin="133,147,0,0" VerticalAlignment="Top" Width="75" Click="Set_Timer"/>
+                    <Button Content="Set Timer" HorizontalAlignment="Left" Margin="149,234,0,0" VerticalAlignment="Top" Width="75" Click="Set_Timer"/>
                     <Button Content="Start Timer" HorizontalAlignment="Left" Margin="260,147,0,0" VerticalAlignment="Top" Width="75" Click="Start_Timer"/>
                     <Button Content="Pauze Timer" HorizontalAlignment="Left" Margin="379,147,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-                    <Button Content="Stop/Reset Timer" HorizontalAlignment="Left" Margin="182,215,0,0" VerticalAlignment="Top" Width="75" Click="Undo_Timer"/>
+                    <Button Content="Stop/Reset Timer" HorizontalAlignment="Left" Margin="379,199,0,0" VerticalAlignment="Top" Width="75" Click="Undo_Timer"/>
+                    <TextBox x:Name="minutebox" HorizontalAlignment="Left" Height="23" Margin="10,198,0,0" TextWrapping="Wrap" Text="Minuut" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="secondbox" HorizontalAlignment="Left" Height="23" Margin="10,234,0,0" TextWrapping="Wrap" Text="Seconde" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="StopWatch">
@@ -30,3 +32,6 @@
 
     </Grid>
 </Window>
+    
+    
+ 

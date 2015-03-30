@@ -25,6 +25,8 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
             _state = new StatePattern();
             this.minute = minute;
             this.second = second;
+            color = "green";
+            
         }
 
         public StatePattern State
@@ -45,8 +47,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
 
         public string getColor()
         {
-
-            return null;
+            return color;
         }
 
         private void TimeTickEvent(Object myObject, EventArgs myEventArgs)

@@ -20,6 +20,8 @@ namespace SmartWatchDesignPatterns
     /// </summary>
     public partial class MainWindow : Window
     {
+        swdp.Timer.Timer t;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,15 +31,17 @@ namespace SmartWatchDesignPatterns
             var datetime = DateTime.Now;
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
-            swdp.Timer.Timer t = new swdp.Timer.Timer(12,12);
-            
    
             
         }
 
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
-
+            t = new swdp.Timer.Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
+            minutebox.Text = "";
+            secondbox.Text = "";
+            StateNameLabel.Content = t.getSecond();
+            StateColorLabel.Content = t.getMinute();
         }
 
         private void Start_Timer(object sender, RoutedEventArgs e)
@@ -52,7 +56,7 @@ namespace SmartWatchDesignPatterns
 
         private void Timer_Button_Click(object sender, RoutedEventArgs e)
         {
-           // StateColorLabel.Content = 
+
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
