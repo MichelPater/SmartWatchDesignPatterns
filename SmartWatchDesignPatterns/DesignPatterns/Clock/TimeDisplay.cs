@@ -18,7 +18,6 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 
             _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
 
-            _timer.Interval = 1000;
             _timer.Enabled = true; 
 
             InitializeTime();

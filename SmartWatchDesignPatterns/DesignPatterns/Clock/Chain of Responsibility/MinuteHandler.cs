@@ -11,7 +11,7 @@
 
         public override void Tick()
         {
-            if (_minute <= 59)
+            if (_minute < 59)
             {
                 _minute++;
             }

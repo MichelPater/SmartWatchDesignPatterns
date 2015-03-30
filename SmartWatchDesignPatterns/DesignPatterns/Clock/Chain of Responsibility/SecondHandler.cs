@@ -12,7 +12,7 @@
 
         public override void Tick()
         {
-            if (_second <= 59)
+            if (_second < 59)
             {
                 _second++;
             }
