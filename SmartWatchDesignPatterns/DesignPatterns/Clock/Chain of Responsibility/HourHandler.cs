@@ -12,7 +12,7 @@
 
         public override void Tick()
         {
-            if (_hour <= 23)
+            if (_hour < 23)
             {
                 _hour++;
             }

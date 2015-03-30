@@ -23,7 +23,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
             //InitializeTime();
 
             _secondHandler.Second = 55;
-            _minuteHandler.Minute = 58;
+            _minuteHandler.Minute = 59;
             _hourHandler.Hour = 23;
         }
 
