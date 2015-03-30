@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SmartWatchDesignPatterns.DesignPatterns;
+using swdp = SmartWatchDesignPatterns.DesignPatterns;
 namespace SmartWatchDesignPatterns
 {
     /// <summary>
@@ -29,9 +29,35 @@ namespace SmartWatchDesignPatterns
             var datetime = DateTime.Now;
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
+            swdp.Timer.Timer t = new swdp.Timer.Timer(12,12);
             
    
             
+        }
+
+        private void Set_Timer(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Start_Timer(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Timer_Button_Click(object sender, RoutedEventArgs e)
+        {
+           // StateColorLabel.Content = 
+        }
+
+        private void Undo_Timer(object sender, RoutedEventArgs e)
+        {
+
         }
 
         
