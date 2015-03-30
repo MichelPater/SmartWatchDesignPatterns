@@ -16,9 +16,8 @@
             {
                 _hour++;
             }
-            else if (succesor != null)
+            else
             {
-                Tick();
                 _hour = 0;
             }
         }
