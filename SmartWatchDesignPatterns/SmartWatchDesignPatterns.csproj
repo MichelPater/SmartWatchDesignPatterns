@@ -58,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DesignPatterns\AbstractTime.cs" />
     <Compile Include="DesignPatterns\Clock\Clock.cs" />
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\HourHandler.cs" />
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\MinuteHandler.cs" />
