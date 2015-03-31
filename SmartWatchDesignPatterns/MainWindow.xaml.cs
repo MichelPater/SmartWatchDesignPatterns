@@ -73,7 +73,7 @@ namespace SmartWatchDesignPatterns
         {
             t.Context.ChangeState();
             Ttimer.Start();
-           //changeColorGrid();
+            //changeColorGrid();
         }
 
         private void Pauze_Timer(object sender, RoutedEventArgs e)
@@ -144,13 +144,13 @@ namespace SmartWatchDesignPatterns
         }
         private void changeColorGrid()
         {
-            
+
             SolidColorBrush brush = conv.ConvertFromString(t.Context.Color) as SolidColorBrush;
             MainGrid.Background = brush;
             MinuteLabel.Content = t.Minute;
             SecondLabel.Content = t.Second;
         }
-        
+
 
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
@@ -178,11 +178,10 @@ namespace SmartWatchDesignPatterns
                     _clock.Post = _tempPost;
                 }
             }
-            MyWipedText.Text = _clock.Post.Title;
-            MyWipedText.ToolTip = _clock.Post.Title;
+            SetWipedText();
             StartFadeInAnimation();
         }
-        
+
         private void StartFadeInAnimation()
         {
             storyboard.Stop();
@@ -206,9 +205,33 @@ namespace SmartWatchDesignPatterns
 
                     string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
-                   swLabel.Content = elapsedTime;
+                    swLabel.Content = elapsedTime;
                 }));
         }
+
+        private void Image_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            _clock.RefreshPosts();
+            SetWipedText();
+            StartFadeInAnimation();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetWipedText();
+            StartFadeInAnimation();
+        }
+
+        /// <summary>
+        /// Sets the WipedTextblock
+        /// </summary>
+        private void SetWipedText()
+        {
+            MyWipedText.Text = _clock.Post.Title;
+            MyWipedText.ToolTip = _clock.Post.Title;
+        }
+
+
 
     }
 }
