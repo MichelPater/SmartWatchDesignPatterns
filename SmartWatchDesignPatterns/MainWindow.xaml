@@ -156,8 +156,10 @@
             <TabItem Header="StopWatch">
                 <Grid Background="#FFE5E5E5" >
                     <Label x:Name="swLabel" Content="StopWatchTime" HorizontalAlignment="Left" Margin="35,110,0,0" VerticalAlignment="Top" Width="117"/>
-                    <Label x:Name="mementoLabel" Content="MementoLabel" HorizontalAlignment="Left" Margin="266,110,0,0" VerticalAlignment="Top" Width="104"/>
-                    <Button Content="Start Stopwatch" HorizontalAlignment="Left" Margin="199,222,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click"/>
+                    <Label x:Name="mementoLabel" Content="Geen Memento" HorizontalAlignment="Left" Margin="266,110,0,0" VerticalAlignment="Top" Width="104"/>
+                    <Button Content="Start Stopwatch" HorizontalAlignment="Left" Margin="35,161,0,0" VerticalAlignment="Top" Width="106" Click="Start_Stopwatch"/>
+                    <Button Content="Stop Stopwatch" HorizontalAlignment="Left" Margin="35,203,0,0" VerticalAlignment="Top" Width="106" Click="Stop_Stopwatch"/>
+                    <Button Content="Save Time" HorizontalAlignment="Left" Margin="236,203,0,0" VerticalAlignment="Top" Width="75" Click="Save_Time"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">

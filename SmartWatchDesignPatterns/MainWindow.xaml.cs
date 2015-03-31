@@ -24,6 +24,7 @@ namespace SmartWatchDesignPatterns
         private TimeCreator timec = new TimeCreator();
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
         private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
+        private System.Timers.Timer _stopwatchTimer = new System.Timers.Timer(50);
 
         private TimeSpan ts = new TimeSpan();
         private Stopwatch sw = new Stopwatch();
@@ -33,7 +34,6 @@ namespace SmartWatchDesignPatterns
 
         //DispatcherTimer benodigdheden
         private DispatcherTimer Ttimer;
-        private DispatcherTimer Stimer;
 
         public MainWindow()
         {
@@ -51,13 +51,10 @@ namespace SmartWatchDesignPatterns
             Ttimer.Interval = new TimeSpan(0, 0, 1);
             Ttimer.Tick += Timer_Tick;
 
-            //Constructor voor DispatcherTimer Stopwatch
-            Stimer = new DispatcherTimer();
-            Stimer.Interval = new TimeSpan(0, 0, 1);
-            Stimer.Tick += stopWatch_Update;
-
             _clockTimer.Elapsed += ClockTimerElapsedEvent;
             _clockTimer.Start();
+
+            _stopwatchTimer.Elapsed += StopWatchTimerEvent;
         }
 
         #region Timerbuttons
@@ -121,24 +118,30 @@ namespace SmartWatchDesignPatterns
 
         }
 
-        private void stopWatch_Update(object sender, EventArgs e)
+
+        private void Start_Stopwatch(object sender, RoutedEventArgs e)
+        {
+            sw.wStopwatch.Start();
+            _stopwatchTimer.Start();
+        }
+
+        private void Stop_Stopwatch(object sender, RoutedEventArgs e)
+        {
+            sw.wStopwatch.Stop();
+            _stopwatchTimer.Stop();
+        }
+
+        private void Save_Time(object sender, RoutedEventArgs e)
         {
             ts = sw.wStopwatch.Elapsed;
 
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
-            ts.Hours, ts.Minutes, ts.Seconds);
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
-            Console.WriteLine(elapsedTime);
+            sw.Originator.savedTime = elapsedTime;
+            sw.Memento = sw.Originator.CreateMemento();
+
+            mementoLabel.Content = sw.Originator.savedTime;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            sw.wStopwatch.Start();
-
-            
-        }
-
-
         private void changeColorGrid()
         {
             
@@ -193,6 +196,18 @@ namespace SmartWatchDesignPatterns
             {
                 timeLabel.Content = _clock.GetStringFormattedTime();
             }));
+        }
+
+        private void StopWatchTimerEvent(object sender, ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(delegate()
+                {
+                    ts = sw.wStopwatch.Elapsed;
+
+                    string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+
+                   swLabel.Content = elapsedTime;
+                }));
         }
 
     }
