@@ -38,7 +38,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 
         private void CreatePost()
         {
-            PostBuilder postBuilder = new PostBuilder("r/ProgrammerHumor");
+            PostBuilder postBuilder = new PostBuilder();
             Collection posts = postBuilder.GetPosts();
 
             _iterator = new Iterator.Iterator(posts);

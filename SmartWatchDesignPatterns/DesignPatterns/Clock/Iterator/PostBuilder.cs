@@ -10,18 +10,28 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     {
         private readonly Reddit _reddit = new Reddit();
         private readonly Subreddit _subreddit;
-        private readonly FromTime timePeriod = FromTime.Week;
         private String _subredditName;
-        private int _amountOfPosts = 5;
+        private int _amountOfPosts = 20;
+
+        /// <summary>
+        /// Default overload, takes subreddit as All
+        /// </summary>
+        public PostBuilder()
+        {
+            _subredditName = "r/All";
+           _subreddit = Subreddit.GetRSlashAll(_reddit);
+        }
 
         /// <summary>
         ///     Constructor with changeable subredditname
         /// </summary>
         /// <param name="subbredditName"></param>
-        public PostBuilder(String subredditName)
+        public PostBuilder(String subredditName) 
         {
-            _subredditName = subredditName;
-            _subreddit = _reddit.GetSubreddit(_subredditName);
+    
+                _subredditName = subredditName;
+                _subreddit = _reddit.GetSubreddit(_subredditName);
+        
         }
 
         public String SubredditName
@@ -43,7 +53,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         public Collection GetPosts()
         {
             var posts = new List<Post>();
-            foreach (var post in _subreddit.GetTop(timePeriod).Take(_amountOfPosts))
+            foreach (var post in _subreddit.Hot.Take(_amountOfPosts))
             {
                 posts.Add(post);
             }
