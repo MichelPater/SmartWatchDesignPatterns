@@ -23,11 +23,12 @@ namespace SmartWatchDesignPatterns
         private Storyboard storyboard = new Storyboard();
         private TimeCreator timec = new TimeCreator();
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
+        private DesignPatterns.Stopwatch.Stopwatch _stopWatch = new TimeCreator().CreateStopwatch();
         private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
         private System.Timers.Timer _stopwatchTimer = new System.Timers.Timer(50);
 
         private TimeSpan ts = new TimeSpan();
-        private Stopwatch sw = new Stopwatch();
+       
 
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
@@ -121,26 +122,26 @@ namespace SmartWatchDesignPatterns
 
         private void Start_Stopwatch(object sender, RoutedEventArgs e)
         {
-            sw.wStopwatch.Start();
+            _stopWatch.wStopwatch.Start();
             _stopwatchTimer.Start();
         }
 
         private void Stop_Stopwatch(object sender, RoutedEventArgs e)
         {
-            sw.wStopwatch.Stop();
+            _stopWatch.wStopwatch.Stop();
             _stopwatchTimer.Stop();
         }
 
         private void Save_Time(object sender, RoutedEventArgs e)
         {
-            ts = sw.wStopwatch.Elapsed;
+            ts = _stopWatch.wStopwatch.Elapsed;
 
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
-            sw.Originator.savedTime = elapsedTime;
-            sw.Memento = sw.Originator.CreateMemento();
+            _stopWatch.Originator.savedTime = elapsedTime;
+            _stopWatch.Memento = _stopWatch.Originator.CreateMemento();
 
-            mementoLabel.Content = sw.Originator.savedTime;
+            mementoLabel.Content = _stopWatch.Originator.savedTime;
         }
         private void changeColorGrid()
         {
@@ -202,7 +203,7 @@ namespace SmartWatchDesignPatterns
         {
             Dispatcher.Invoke(new Action(delegate()
                 {
-                    ts = sw.wStopwatch.Elapsed;
+                    ts = _stopWatch.wStopwatch.Elapsed;
 
                     string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
