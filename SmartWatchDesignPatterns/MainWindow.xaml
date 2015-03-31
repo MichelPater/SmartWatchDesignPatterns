@@ -5,12 +5,17 @@
         Height="350"
         Width="525">
 
+    <Window.Resources>
+        <FontFamily x:Key="DotMatrixFontFamily">/Resources/#Dot Matrix</FontFamily>
+    </Window.Resources>
+
     <Grid>
         <TabControl HorizontalAlignment="Left"
                     Height="299"
                     Margin="10,10,0,0"
                     VerticalAlignment="Top"
-                    Width="497">
+                    Width="497"
+                    >
             <TabItem Header="Clock">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="timeLabel"
@@ -30,7 +35,9 @@
                                Foreground="Maroon"
                                TextWrapping="Wrap"
                                Text="Temporary Text"
-                               TextTrimming="CharacterEllipsis">
+                               TextTrimming="CharacterEllipsis"
+                               FontFamily="{StaticResource DotMatrixFontFamily}"
+                               >
                         
                         
                         
