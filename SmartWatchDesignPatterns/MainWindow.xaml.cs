@@ -19,7 +19,7 @@ namespace SmartWatchDesignPatterns
     {
         private DesignPatterns.Timer.Timer t;
         private Storyboard storyboard = new Storyboard();
-        private StopwatchHolder sw = new StopwatchHolder();
+        private Stopwatch sw = new Stopwatch();
         private TimeCreator timec = new TimeCreator();
         private TimeSpan ts;
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
@@ -125,7 +125,7 @@ namespace SmartWatchDesignPatterns
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
-            swLabel.Content = sw.ElapsedTime;
+            //swLabel.Content = sw.ElapsedTime;
             //mementoLabel.Content = sw.CareTaker.Memento.savedTime;
             
         }

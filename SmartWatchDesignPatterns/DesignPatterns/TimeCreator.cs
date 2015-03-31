@@ -14,7 +14,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns
             return new Timer.Timer(minute, second);
         }
 
-        public Stopwatch.StopwatchHolder CreateStopwatch()
+        public Stopwatch.Stopwatch CreateStopwatch()
         {
             throw new NotImplementedException("Method is not implemented");
         }
