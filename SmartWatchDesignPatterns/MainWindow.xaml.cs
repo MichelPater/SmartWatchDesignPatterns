@@ -58,7 +58,7 @@ namespace SmartWatchDesignPatterns
 
             _clockTimer.Elapsed += ClockTimerElapsedEvent;
             _clockTimer.Start();
-            
+        }
 
         //Buttons voor Timer afdeling
         private void Set_Timer(object sender, RoutedEventArgs e)
