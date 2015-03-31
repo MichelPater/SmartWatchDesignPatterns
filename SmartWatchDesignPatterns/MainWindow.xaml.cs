@@ -6,7 +6,7 @@ using RedditSharp.Things;
 using SmartWatchDesignPatterns.DesignPatterns.Clock;
 using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
 using SmartWatchDesignPatterns.DesignPatterns.Timer;
-using swdp = SmartWatchDesignPatterns.DesignPatterns;
+using SmartWatchDesignPatterns.DesignPatterns.Stopwatch;
 using System.Windows.Media;
 
 namespace SmartWatchDesignPatterns
@@ -20,12 +20,15 @@ namespace SmartWatchDesignPatterns
         private Iterator iterator;
         private Post post;
         private Storyboard storyboard = new Storyboard();
+        private Stopwatch sw = new Stopwatch();
+        private TimeSpan ts;
 
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
 
         //DispatcherTimer benodigdheden
         private DispatcherTimer Ttimer;
+        private DispatcherTimer Stimer;
 
         public MainWindow()
         {
@@ -38,10 +41,16 @@ namespace SmartWatchDesignPatterns
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
 
-            //Constructor voor DispatcherTimer
+            //Constructor voor DispatcherTimer Timer
             Ttimer = new DispatcherTimer();
             Ttimer.Interval = new TimeSpan(0, 0, 1);
             Ttimer.Tick += Timer_Tick;
+
+            //Constructor voor DispatcherTimer Stopwatch
+            Stimer = new DispatcherTimer();
+            Stimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            Stimer.Tick += stopWatch_Update;
+
 
             //SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
             CreatePost();
@@ -80,7 +89,7 @@ namespace SmartWatchDesignPatterns
             t.Context.ChangeStateDefault();
         }
 
-        //DispatcherTimer Tick Methodes
+        //DispatcherTimer Timer Tick Methodes
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (t.Minute == 0 && t.Second == 0)
@@ -105,6 +114,22 @@ namespace SmartWatchDesignPatterns
             }
 
            }
+
+        private void stopWatch_Update(object sender, EventArgs e)
+        {
+            ts = new TimeSpan();
+
+            //ts = sw.ElapsedTime;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);  
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            swLabel.Content = sw.ElapsedTime;
+            //mementoLabel.Content = sw.CareTaker.Memento.savedTime;
+            
+        }
 
         private void changeColorGrid()
         {
@@ -159,5 +184,6 @@ namespace SmartWatchDesignPatterns
             storyboard.Children.Add(FadeInAnimation);
             storyboard.Begin(MyWipedText);
         }
-        }
+
+    }
 }

@@ -143,6 +143,7 @@ Temporary Text
                 <Grid Background="#FFE5E5E5" >
                     <Label x:Name="swLabel" Content="StopWatchTime" HorizontalAlignment="Left" Margin="35,110,0,0" VerticalAlignment="Top" Width="117"/>
                     <Label x:Name="mementoLabel" Content="MementoLabel" HorizontalAlignment="Left" Margin="266,110,0,0" VerticalAlignment="Top" Width="104"/>
+                    <Button Content="Start Stopwatch" HorizontalAlignment="Left" Margin="199,222,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">

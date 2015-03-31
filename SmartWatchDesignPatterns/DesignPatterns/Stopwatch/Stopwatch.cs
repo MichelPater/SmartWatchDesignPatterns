@@ -10,26 +10,53 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
     class Stopwatch
     {
         wStopwatch wsw;
-        TimeSpan ts;
-        String elapsedTime;
+        string elapsedTime;
         Originator o;
+        CareTaker c;
 
         public Stopwatch()
         {
-            Originator o = new Originator();
+            wsw = new wStopwatch();
 
-            wStopwatch wsw = new wStopwatch();
+             o = new Originator();
 
-            wsw.Start();
+             c = new CareTaker();
 
-            TimeSpan ts = wsw.Elapsed;
+        }
 
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+        public string ElapsedTime
+        {
+            get { return elapsedTime; }
+            set { elapsedTime = value; }
+        }
+
+        public CareTaker CareTaker
+        {
+            get { return c; }
+            set { c = value; }
         }
 
         public void SaveTime()
         {
-            o.CreateMemento();
+            o.savedTime = elapsedTime;
+            c.Memento = o.CreateMemento();
+        }
+
+        public void RestoreTimer()
+        {
+           stopTheWatch();
+           o.setMemento(c.Memento);
+           elapsedTime = o.savedTime;
+        }
+
+        public void startTheWatch()
+        {
+            wsw.Start();
+        }
+
+        public void stopTheWatch()
+        {
+            wsw.Stop();
         }
     }
 }
