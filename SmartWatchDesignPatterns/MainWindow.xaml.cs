@@ -26,6 +26,8 @@ namespace SmartWatchDesignPatterns
     public partial class MainWindow : Window
     {
         private swdp.Timer.Timer t;
+        private Iterator iterator;
+        private Post post;
 
         //DispatcherTimer benodigdheden
         private DispatcherTimer Ttimer;
@@ -48,7 +50,7 @@ namespace SmartWatchDesignPatterns
 
 
             // SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
-            //CreatePost();
+            CreatePost();
 
         }
 
@@ -97,41 +99,43 @@ namespace SmartWatchDesignPatterns
             }
             MinuteLabel.Content = t.Minute;
             SecondLabel.Content = t.Second;
-            
+
         }
-
-
-
-
-
-
-
+        
         private void CreatePost()
         {
             PostBuilder postBuilder = new PostBuilder("r/ProgrammerHumor");
             Collection posts = postBuilder.GetPosts();
 
-            Iterator iterator = new Iterator(posts);
-
-            for (Post post = iterator.First(); !iterator.IsAtEnd; post = iterator.Next())
-            {
-                Console.WriteLine(post.Title);
-            }
-            Console.WriteLine("_____________________________________");
-            for (Post post = iterator.Last(); !iterator.IsAtBegin; post = iterator.Previous())
-            {
-                Console.WriteLine(post.Title);
-            }
+            iterator = new Iterator(posts);
+            post = iterator.CurrentItem;
+            MyWipedText.Text = post.Title;
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!iterator.IsAtEnd)
+            {
+                Post _tempPost = iterator.Next();
+                if (_tempPost != null)
+                {
+                    post = _tempPost;
+                }
+            }
+            MyWipedText.Text = post.Title;
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!iterator.IsAtBegin)
+            {
+                Post _tempPost = iterator.Previous();
+                if (_tempPost != null)
+                {
+                    post = _tempPost;
+                }
+            }
+            MyWipedText.Text = post.Title;
         }
     }
 }
