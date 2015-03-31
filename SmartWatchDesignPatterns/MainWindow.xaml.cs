@@ -25,6 +25,8 @@ namespace SmartWatchDesignPatterns
     public partial class MainWindow : Window
     {
         private swdp.Timer.Timer t;
+        private Iterator iterator;
+        private Post post;
 
         public MainWindow()
         {
@@ -37,7 +39,7 @@ namespace SmartWatchDesignPatterns
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
             // SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
-            //CreatePost();
+            CreatePost();
         }
 
         private void Set_Timer(object sender, RoutedEventArgs e)
@@ -74,8 +76,8 @@ namespace SmartWatchDesignPatterns
             PostBuilder postBuilder = new PostBuilder("r/ProgrammerHumor");
             Collection posts = postBuilder.GetPosts();
 
-            Iterator iterator = new Iterator(posts);
-
+             iterator = new Iterator(posts);
+            /*
             for (Post post = iterator.First(); !iterator.IsAtEnd; post = iterator.Next())
             {
                 Console.WriteLine(post.Title);
@@ -84,7 +86,25 @@ namespace SmartWatchDesignPatterns
             for (Post post = iterator.Last(); !iterator.IsAtBegin; post = iterator.Previous())
             {
                 Console.WriteLine(post.Title);
+            }*/
+        }
+
+        private void PreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!iterator.IsAtBegin)
+            {
+               post = iterator.Previous();
             }
+            MyWipedText.Text = post.Title;
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!iterator.IsAtEnd)
+            {
+                post = iterator.Next();
+            }
+            MyWipedText.Text = post.Title;
         }
     }
 }
