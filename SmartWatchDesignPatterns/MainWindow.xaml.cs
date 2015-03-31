@@ -19,12 +19,14 @@ namespace SmartWatchDesignPatterns
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Timer t;
+        private DesignPatterns.Timer.Timer t;
         private Storyboard storyboard = new Storyboard();
         private Stopwatch sw = new Stopwatch();
+        private TimeCreator timec = new TimeCreator();
         private TimeSpan ts;
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
         private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
+
 
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
@@ -56,14 +58,12 @@ namespace SmartWatchDesignPatterns
 
             _clockTimer.Elapsed += ClockTimerElapsedEvent;
             _clockTimer.Start();
-
-
-        }
+            
 
         //Buttons voor Timer afdeling
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
-            t = new Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
+            t = timec.CreateTimer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
             minutebox.Text = "";
             secondbox.Text = "";
             MinuteLabel.Content = t.Minute;
@@ -75,7 +75,7 @@ namespace SmartWatchDesignPatterns
         {
             t.Context.ChangeState();
             Ttimer.Start();
-            //changeColorGrid();
+           //changeColorGrid();
         }
 
         private void Pauze_Timer(object sender, RoutedEventArgs e)
@@ -117,33 +117,33 @@ namespace SmartWatchDesignPatterns
                 SecondLabel.Content = t.Second;
             }
 
-        }
+           }
 
         private void stopWatch_Update(object sender, EventArgs e)
         {
             ts = new TimeSpan();
 
             //ts = sw.ElapsedTime;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);  
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            swLabel.Content = sw.ElapsedTime;
+            
+            //swLabel.Content = sw.ElapsedTime;
             //mementoLabel.Content = sw.CareTaker.Memento.savedTime;
-
+            
         }
 
         private void changeColorGrid()
         {
-
+            
             SolidColorBrush brush = conv.ConvertFromString(t.Context.Color) as SolidColorBrush;
             MainGrid.Background = brush;
             MinuteLabel.Content = t.Minute;
             SecondLabel.Content = t.Second;
         }
-
+        
 
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
@@ -175,7 +175,7 @@ namespace SmartWatchDesignPatterns
             MyWipedText.ToolTip = _clock.Post.Title;
             StartFadeInAnimation();
         }
-
+        
         private void StartFadeInAnimation()
         {
             storyboard.Stop();
