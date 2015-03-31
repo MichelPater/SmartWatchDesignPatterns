@@ -6,7 +6,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns
     {
         public Clock.Clock CreateClock()
         {
-            throw new NotImplementedException("Method is not implemented");
+            return new Clock.Clock();
         }
 
         public Timer.Timer CreateTimer()

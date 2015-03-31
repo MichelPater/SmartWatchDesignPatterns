@@ -14,12 +14,19 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
     {
         private TimeSingelton _timeSingelton = TimeSingelton.UniqueInstance;
         private Iterator.Iterator _iterator;
-        public Iterator.Iterator Iterator
+        
+       public Iterator.Iterator Iterator
         {
             get { return _iterator; }
             set { _iterator = value; }
         }
-        private Post post;
+        private Post _post;
+        
+       public Post Post
+        {
+            get { return _post; }
+            set { _post = value; }
+        }
 
         public Clock()
         {
@@ -35,14 +42,11 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
             Collection posts = postBuilder.GetPosts();
 
             _iterator = new Iterator.Iterator(posts);
-            post = _iterator.CurrentItem;
+            _post = _iterator.CurrentItem;
         }
-
-
 
         private void UpdateClock()
         {
-            
             _timeSingelton.GetTime();
         }
     }

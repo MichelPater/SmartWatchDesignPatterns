@@ -10,7 +10,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     /// <summary>
     /// The 'ConcreteAggregate' class
     /// </summary>
-    class Collection : IAbstractCollection
+    public class Collection : IAbstractCollection
     {
         private ArrayList _posts = new ArrayList();
 

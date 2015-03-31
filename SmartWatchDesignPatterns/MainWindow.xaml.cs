@@ -8,6 +8,7 @@ using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
 using SmartWatchDesignPatterns.DesignPatterns.Timer;
 using SmartWatchDesignPatterns.DesignPatterns.Stopwatch;
 using System.Windows.Media;
+using SmartWatchDesignPatterns.DesignPatterns;
 
 namespace SmartWatchDesignPatterns
 {
@@ -20,6 +21,7 @@ namespace SmartWatchDesignPatterns
         private Storyboard storyboard = new Storyboard();
         private Stopwatch sw = new Stopwatch();
         private TimeSpan ts;
+        private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
 
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
@@ -48,6 +50,9 @@ namespace SmartWatchDesignPatterns
             Stimer = new DispatcherTimer();
             Stimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             Stimer.Tick += stopWatch_Update;
+
+            
+            
 
         }
 
@@ -139,29 +144,29 @@ namespace SmartWatchDesignPatterns
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!iterator.IsAtEnd)
+            if (!_clock.Iterator.IsAtEnd)
             {
-                Post _tempPost = iterator.Next();
+                Post _tempPost = _clock.Iterator.Next();
                 if (_tempPost != null)
                 {
-                    post = _tempPost;
+                    _clock.Post = _tempPost;
                 }
             }
-            MyWipedText.Text = post.Title;
+            MyWipedText.Text = _clock.Post.Title;
             StartFadeInAnimation();
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!iterator.IsAtBegin)
+            if (!_clock.Iterator.IsAtBegin)
             {
-                Post _tempPost = iterator.Previous();
+                Post _tempPost = _clock.Iterator.Previous();
                 if (_tempPost != null)
                 {
-                    post = _tempPost;
+                    _clock.Post = _tempPost;
                 }
             }
-            MyWipedText.Text = post.Title;
+            MyWipedText.Text = _clock.Post.Title;
             StartFadeInAnimation();
         }
         
