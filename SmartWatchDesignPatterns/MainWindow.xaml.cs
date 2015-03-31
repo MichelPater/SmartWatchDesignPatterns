@@ -1,23 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using RedditSharp.Things;
-using SmartWatchDesignPatterns.DesignPatterns.Clock;
-using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
-using swdp = SmartWatchDesignPatterns.DesignPatterns;
 using System.Windows.Threading;
+using RedditSharp.Things;
+using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
+using SmartWatchDesignPatterns.DesignPatterns.Timer;
+using swdp = SmartWatchDesignPatterns.DesignPatterns;
 
 namespace SmartWatchDesignPatterns
 {
@@ -26,7 +14,7 @@ namespace SmartWatchDesignPatterns
     /// </summary>
     public partial class MainWindow : Window
     {
-        private swdp.Timer.Timer t;
+        private Timer t;
         private Iterator iterator;
         private Post post;
         private Storyboard storyboard = new Storyboard();
@@ -48,7 +36,7 @@ namespace SmartWatchDesignPatterns
             //Constructor voor DispatcherTimer
             Ttimer = new DispatcherTimer();
             Ttimer.Interval = new TimeSpan(0, 0, 1);
-            Ttimer.Tick += new EventHandler(Timer_Tick);
+            Ttimer.Tick += Timer_Tick;
 
 
             // SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
@@ -60,7 +48,7 @@ namespace SmartWatchDesignPatterns
 
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
-            t = new swdp.Timer.Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
+            t = new Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
             minutebox.Text = "";
             secondbox.Text = "";
             MinuteLabel.Content = t.Minute;
@@ -140,10 +128,8 @@ namespace SmartWatchDesignPatterns
             }
             MyWipedText.Text = post.Title;
             //StartFadeInAnimation();
-
         }
-
-
+        
         private void StartFadeInAnimation()
         {
             storyboard.Stop();
