@@ -63,11 +63,15 @@
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\MinuteHandler.cs" />
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\SecondHandler.cs" />
     <Compile Include="DesignPatterns\Clock\Chain of Responsibility\TimeHandler.cs" />
+    <Compile Include="DesignPatterns\Clock\Iterator\Collection.cs" />
+    <Compile Include="DesignPatterns\Clock\Iterator\IAbstractCollection.cs" />
+    <Compile Include="DesignPatterns\Clock\Iterator\IAbstractIterator.cs" />
+    <Compile Include="DesignPatterns\Clock\Iterator\Iterator.cs" />
     <Compile Include="DesignPatterns\Clock\TimeDisplay.cs" />
     <Compile Include="DesignPatterns\Stopwatch\Stopwatch.cs" />
     <Compile Include="DesignPatterns\Timer\StatePattern.cs" />
     <Compile Include="DesignPatterns\Timer\Timer.cs" />
-    <Compile Include="RedditAPI\PostBuilder.cs" />
+    <Compile Include="DesignPatterns\Clock\Iterator\PostBuilder.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
