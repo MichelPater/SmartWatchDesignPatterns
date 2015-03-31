@@ -18,9 +18,9 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         ///     Constructor with changeable subredditname
         /// </summary>
         /// <param name="subbredditName"></param>
-        public PostBuilder(String subbredditName)
+        public PostBuilder(String subredditName)
         {
-            _subredditName = subbredditName;
+            _subredditName = subredditName;
             _subreddit = _reddit.GetSubreddit(_subredditName);
         }
 
@@ -40,14 +40,21 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         ///     Gets a list of posts from a defined subreddit
         /// </summary>
         /// <returns></returns>
-        public List<Post> GetPosts()
+        public Collection GetPosts()
         {
             var posts = new List<Post>();
             foreach (var post in _subreddit.GetTop(timePeriod).Take(_amountOfPosts))
             {
                 posts.Add(post);
             }
-            return posts;
+            Collection _postCollection = new Collection();
+
+            for (int i = 0; i < posts.Count; i++)
+            {
+                _postCollection[i] = _postCollection[i];
+            }
+
+            return _postCollection;
         }
     }
 }
