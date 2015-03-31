@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using RedditSharp.Things;
+using SmartWatchDesignPatterns.DesignPatterns.Clock;
 using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
 using SmartWatchDesignPatterns.DesignPatterns.Timer;
 using swdp = SmartWatchDesignPatterns.DesignPatterns;
@@ -42,14 +43,11 @@ namespace SmartWatchDesignPatterns
             Ttimer.Interval = new TimeSpan(0, 0, 1);
             Ttimer.Tick += Timer_Tick;
 
-
-            // SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
+            //SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
             CreatePost();
-
         }
 
         //Buttons voor Timer afdeling
-
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
             t = new Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
@@ -72,7 +70,6 @@ namespace SmartWatchDesignPatterns
             t.Context.ChangeState();
             Ttimer.Stop();
             //changeColorGrid();
-
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
@@ -114,6 +111,8 @@ namespace SmartWatchDesignPatterns
             
             SolidColorBrush brush = conv.ConvertFromString(t.Context.Color) as SolidColorBrush;
             MainGrid.Background = brush;
+            MinuteLabel.Content = t.Minute;
+            SecondLabel.Content = t.Second;
         }
         
         private void CreatePost()
@@ -137,7 +136,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
-            //StartFadeInAnimation();
+            StartFadeInAnimation();
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
@@ -151,7 +150,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
-            //StartFadeInAnimation();
+            StartFadeInAnimation();
         }
         
         private void StartFadeInAnimation()
