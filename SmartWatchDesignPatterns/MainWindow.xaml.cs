@@ -33,12 +33,8 @@ namespace SmartWatchDesignPatterns
 
         private TimeSpan ts = new TimeSpan();
        
-
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
-
-        //DispatcherTimer benodigdheden
-        private DispatcherTimer Ttimer;
 
         public MainWindow()
         {
@@ -50,16 +46,15 @@ namespace SmartWatchDesignPatterns
 
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
-
-            //Constructor voor DispatcherTimer Timer
-            Ttimer = new DispatcherTimer();
-            Ttimer.Interval = new TimeSpan(0, 0, 1);
-            Ttimer.Tick += Timer_Tick;
-
             _clockTimer.Elapsed += ClockTimerElapsedEvent;
             _clockTimer.Start();
 
             _stopwatchTimer.Elapsed += StopWatchTimerEvent;
+
+            _timerTimer.Elapsed += Timer_Tick;
+
+            UpdateMementoLabel();
+
         }
 
         #region Timerbuttons
@@ -74,14 +69,14 @@ namespace SmartWatchDesignPatterns
 
 
             timer.Context.ChangeState();
-            Ttimer.Start();
+            timer.Start();
             changeColorGrid();
         }
 
         private void Pauze_Timer(object sender, RoutedEventArgs e)
         {
             timer.Context.ChangeState();
-            Ttimer.Stop();
+            timer.Stop();
             changeColorGrid();
         }
 
@@ -95,33 +90,6 @@ namespace SmartWatchDesignPatterns
             timer.Context.ChangeStateDefault();
         }
         #endregion
-
-        //DispatcherTimer Timer Tick Methodes
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (timer.Minute == 0 && timer.Second == 0)
-            {
-                Ttimer.Stop();
-                timer.Context.ChangeStateAlarm();
-            }
-            else
-            {
-
-                if (timer.Second >= 1)
-                {
-                    --timer.Second;
-                }
-                else
-                {
-                    timer.Second = 59;
-                    --timer.Minute;
-                }
-                MinuteLabel.Content = timer.Minute;
-                SecondLabel.Content = timer.Second;
-            }
-
-        }
-
 
         private void Start_Stopwatch(object sender, RoutedEventArgs e)
         {
@@ -143,8 +111,21 @@ namespace SmartWatchDesignPatterns
 
             _stopWatch.Originator.savedTime = elapsedTime;
             _stopWatch.Memento = _stopWatch.Originator.CreateMemento();
+            _stopWatch.MementoList.Dequeue();
+            _stopWatch.MementoList.Enqueue(_stopWatch.Memento.savedTime);
 
-            mementoLabel.Content = _stopWatch.Originator.savedTime;
+            UpdateMementoLabel();
+        }
+
+        private void UpdateMementoLabel()
+        {
+            mementoLabel1.Content = _stopWatch.getMementoFromQueue(0);
+            mementoLabel2.Content = _stopWatch.getMementoFromQueue(1);
+            mementoLabel3.Content = _stopWatch.getMementoFromQueue(2);
+            mementoLabel4.Content = _stopWatch.getMementoFromQueue(3);
+            mementoLabel5.Content = _stopWatch.getMementoFromQueue(4);
+
+
         }
         private void changeColorGrid()
         {
@@ -154,8 +135,6 @@ namespace SmartWatchDesignPatterns
             MinuteLabel.Content = timer.Minute;
             SecondLabel.Content = timer.Second;
         }
-
-
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
@@ -193,6 +172,7 @@ namespace SmartWatchDesignPatterns
             storyboard.Begin(MyWipedText);
         }
 
+        #region TimerTickEvents
         private void ClockTimerElapsedEvent(object sender, ElapsedEventArgs e)
         {
             Dispatcher.Invoke(new Action(delegate()
@@ -213,6 +193,35 @@ namespace SmartWatchDesignPatterns
                 }));
         }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Dispatcher.Invoke(new Action(delegate()
+                {
+
+                    if (t.Minute == 0 && t.Second == 0)
+                    {
+                        _timerTimer.Stop();
+                        t.Context.ChangeStateAlarm();
+                    }
+                    else
+                    {
+
+                        if (t.Second >= 1)
+                        {
+                            --t.Second;
+                        }
+                        else
+                        {
+                            t.Second = 59;
+                            --t.Minute;
+                        }
+                        MinuteLabel.Content = t.Minute;
+                        SecondLabel.Content = t.Second;
+                    }
+                }));
+
+        }
+        #endregion
         private void Image_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             _clock.RefreshPosts();
