@@ -68,9 +68,9 @@
     <Compile Include="DesignPatterns\Clock\Iterator\IAbstractIterator.cs" />
     <Compile Include="DesignPatterns\Clock\Iterator\Iterator.cs" />
     <Compile Include="DesignPatterns\Clock\TimeDisplay.cs" />
+    <Compile Include="DesignPatterns\ITime.cs" />
     <Compile Include="DesignPatterns\Stopwatch\Stopwatch.cs" />
     <Compile Include="DesignPatterns\TimeCreator.cs" />
-    <Compile Include="DesignPatterns\TimeFactory.cs" />
     <Compile Include="DesignPatterns\Timer\StatePattern.cs" />
     <Compile Include="DesignPatterns\Timer\Timer.cs" />
     <Compile Include="DesignPatterns\Clock\Iterator\PostBuilder.cs" />
