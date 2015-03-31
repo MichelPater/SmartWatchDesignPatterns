@@ -123,5 +123,15 @@ namespace SmartWatchDesignPatterns
                 Console.WriteLine(post.Title);
             }
         }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

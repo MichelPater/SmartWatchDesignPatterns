@@ -24,16 +24,12 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
         */
     class DefaultState : State
     {
-        public DefaultState()
-        {
-            
-        }
 
         public override void StateUpdate(Context context)
         {
-            context.State = new DefaultState();
-            context.Color = "blue";
-            context.StateName = "Default";
+            context.State = new RunningState();
+            context.Color = "green";
+            context.StateName = "Running";
         }
 
          public override void StateUpdate(Context context, string status)
