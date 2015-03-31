@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using wStopwatch = System.Diagnostics.Stopwatch;
+using System.Diagnostics.Stopwatch;
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 {
     class StopwatchHolder
     {
-        wStopwatch wsw;
+        Stopwatch sw;
         string elapsedTime;
         Originator o;
         CareTaker c;
 
         public StopwatchHolder()
         {
-            wsw = new wStopwatch();
+            sw = new Stopwatch();
 
-             o = new Originator();
+            o = new Originator();
 
-             c = new CareTaker();
+            c = new CareTaker();
 
         }
 
