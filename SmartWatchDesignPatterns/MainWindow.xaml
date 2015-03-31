@@ -7,6 +7,7 @@
 
     <Window.Resources>
         <FontFamily x:Key="DotMatrixFontFamily">/Resources/#Dot Matrix</FontFamily>
+        <FontFamily x:Key="AlarmClockFontFamily">/Resources/#alarm clock</FontFamily>
     </Window.Resources>
 
     <Grid>
@@ -16,20 +17,35 @@
                     VerticalAlignment="Top"
                     Width="497"
                     >
-            <TabItem Header="Clock">
+
+
+            <TabItem Header="Clock"
+                     HorizontalAlignment="Center">
+                
+                
                 <Grid Background="#FFE5E5E5">
+                    <Image Margin="0,10,-9,85"
+                           Source="Resources/alarmclock_2.jpg"
+                           Stretch="Fill" />
+
+
                     <Label x:Name="timeLabel"
                            Content="00:00:00"
-                           Margin="10,22,10,184"
-                           FontSize="48"
+                           Margin="10,55,10,151"
+                           FontSize="60"
                            FontWeight="Bold"
                            Foreground="Maroon"
                            HorizontalContentAlignment="Center"
-                           
+                           FontFamily="{StaticResource AlarmClockFontFamily}"
                            />
 
+                    <Image Margin="10,196,10,2"
+                           Source="Resources/led_sign.jpg"
+                           Stretch="Fill"
+                            />
+
                     <TextBlock Name="MyWipedText"
-                               Margin="11,196,9,10"
+                               Margin="29,207,25,10"
                                FontSize="25"
                                FontWeight="Bold"
                                Foreground="Maroon"
@@ -84,6 +100,7 @@
                             VerticalAlignment="Top"
                             Width="75"
                             Click="PreviousButton_Click" />
+                
 
                 </Grid>
             </TabItem>

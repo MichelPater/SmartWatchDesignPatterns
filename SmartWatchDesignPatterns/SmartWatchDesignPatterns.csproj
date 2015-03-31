@@ -111,6 +111,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\alarm clock.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\DOTMATRI.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -120,6 +123,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\alarmclock.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\led_sign.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\alarmclock_2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
