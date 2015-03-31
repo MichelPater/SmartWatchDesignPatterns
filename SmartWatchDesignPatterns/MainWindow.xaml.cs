@@ -116,7 +116,6 @@ namespace SmartWatchDesignPatterns
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            
             if (!iterator.IsAtEnd)
             {
                 Post _tempPost = iterator.Next();
@@ -126,7 +125,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
-            StartFadeInAnimation();
+            //StartFadeInAnimation();
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
@@ -140,7 +139,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
-            StartFadeInAnimation();
+            //StartFadeInAnimation();
 
         }
 

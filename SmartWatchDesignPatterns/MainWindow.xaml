@@ -33,7 +33,7 @@ Temporary Text
 
   <!-- Animates the text block's width. -->
                         <TextBlock.Triggers>
-                            <EventTrigger RoutedEvent="TextBlock.Loaded">
+                            <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard>
                                     <Storyboard Name="FadeOutStoryboard">
                                         

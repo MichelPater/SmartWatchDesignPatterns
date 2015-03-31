@@ -39,20 +39,23 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         // Gets next item
         public Post Next()
         {
-            _current += _step;
             if (!IsAtEnd)
+            {
+                _current += _step;
                 return _collection[_current] as Post;
+            }
             else
             {
                 return null;
             }
         }
 
+        //Gets previous item
          public Post Previous()
          {
-             _current -= _step;
              if (!IsAtBegin)
              {
+                 _current -= _step;
                  return _collection[_current] as Post;
              }
              else
@@ -77,13 +80,13 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         // Gets whether iteration is at the end
         public bool IsAtEnd
         {
-            get { return _current >= _collection.Count; }
+            get { return _current >= _collection.Count-1; }
         }
 
         //Get wheter iteration is at begin
          public bool IsAtBegin
          {
-             get { return _current < 0; }
+             get { return _current <= 0; }
          }
     }
 }
