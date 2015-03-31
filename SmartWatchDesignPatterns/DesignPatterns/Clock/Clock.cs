@@ -48,5 +48,10 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
         {
             return _timeSingelton.GetTime().ToString("HH:mm:ss");
         }
+
+       public void RefreshPosts()
+       {
+           CreatePost();
+       }
     }
 }
