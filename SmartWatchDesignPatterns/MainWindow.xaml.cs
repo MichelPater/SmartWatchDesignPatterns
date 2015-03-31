@@ -17,11 +17,13 @@ namespace SmartWatchDesignPatterns
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Timer t;
+        private DesignPatterns.Timer.Timer t;
         private Storyboard storyboard = new Storyboard();
         private Stopwatch sw = new Stopwatch();
+        private TimeCreator timec = new TimeCreator();
         private TimeSpan ts;
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
+
 
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
@@ -50,16 +52,13 @@ namespace SmartWatchDesignPatterns
             Stimer = new DispatcherTimer();
             Stimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             Stimer.Tick += stopWatch_Update;
-
-            
-            
-
         }
+
 
         //Buttons voor Timer afdeling
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
-            t = new Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
+            t = timec.CreateTimer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
             minutebox.Text = "";
             secondbox.Text = "";
             MinuteLabel.Content = t.Minute;

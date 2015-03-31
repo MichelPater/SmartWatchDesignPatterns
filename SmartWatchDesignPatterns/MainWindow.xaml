@@ -115,6 +115,7 @@ Temporary Text
                             Width="75"
                             Click="Undo_Timer" />
                     <TextBox x:Name="minutebox"
+                             x:FieldModifier="public"
                              HorizontalAlignment="Left"
                              Height="23"
                              Margin="10,198,0,0"
@@ -123,6 +124,7 @@ Temporary Text
                              VerticalAlignment="Top"
                              Width="120" />
                     <TextBox x:Name="secondbox"
+                             x:FieldModifier="public"
                              HorizontalAlignment="Left"
                              Height="23"
                              Margin="10,234,0,0"

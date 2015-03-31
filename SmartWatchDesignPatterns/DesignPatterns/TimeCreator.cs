@@ -9,9 +9,9 @@ namespace SmartWatchDesignPatterns.DesignPatterns
             return new Clock.Clock();
         }
 
-        public Timer.Timer CreateTimer()
+        public Timer.Timer CreateTimer(int minute, int second)
         {
-            throw new NotImplementedException("Method is not implemented");
+            return new Timer.Timer(minute, second);
         }
 
         public Stopwatch.Stopwatch CreateStopwatch()
