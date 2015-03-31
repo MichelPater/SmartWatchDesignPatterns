@@ -21,8 +21,8 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
             _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             _timer.Enabled = true;
 
-            _guiTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            _timer.Enabled = true;
+            _guiTimer.Elapsed += new ElapsedEventHandler(GUIUpdateEvent);
+            _guiTimer.Enabled = true;
             InitializeTime();
         }
 
