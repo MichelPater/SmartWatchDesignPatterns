@@ -136,6 +136,12 @@
   <ItemGroup>
     <Resource Include="Resources\Icons8-Ios7-Time-And-Date-Clock.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minutes.jpg" />
+    <Resource Include="Resources\seconds.jpg" />
+    <Resource Include="Resources\start_stop.jpg" />
+    <Resource Include="Resources\timer.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -154,31 +154,41 @@
                            KeyDown="Image_KeyDown" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Timer">
+            <TabItem Header="Timer"
+                     Height="22"
+                     VerticalAlignment="Bottom"
+                     Margin="-2,-2,-2,2">
                 <Grid x:Name="MainGrid"
-                      Background="#FFE5E5E5">
+                      Background="White">
+
+                    <Image Source="Resources/timer.jpg"
+                           Stretch="Fill"
+                           Margin="44,0,55,0" />
+
                     <Label x:Name="MinuteLabel"
-                           Content="MinuteLabel"
+                           Content="00"
+                           FontSize="60"
+                           FontWeight="Bold"
+                           Foreground="Maroon"
+                           HorizontalContentAlignment="Center"
+                           FontFamily="{StaticResource AlarmClockFontFamily}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Margin="24,37,0,0"
-                           Width="200"
-                           Height="75"
-                           FontSize="40" />
+                           Margin="120,56,0,0"
+                           Width="120"
+                           Height="75" />
                     <Label x:Name="SecondLabel"
-                           Content="SecondLabel"
+                           Content="00"
+                           FontSize="60"
+                           FontWeight="Bold"
+                           Foreground="Maroon"
+                           HorizontalContentAlignment="Center"
+                           FontFamily="{StaticResource AlarmClockFontFamily}"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Margin="260,37,0,0"
-                           Width="200"
-                           Height="75"
-                           FontSize="40" />
-                    <Button Content="Set Timer"
-                            HorizontalAlignment="Left"
-                            Margin="149,234,0,0"
-                            VerticalAlignment="Top"
-                            Width="75"
-                            Click="Set_Timer" />
+                           Margin="241,56,0,0"
+                           Width="120"
+                           Height="75" />
                     <Button Content="Start Timer"
                             HorizontalAlignment="Left"
                             Margin="149,198,0,0"
@@ -191,30 +201,13 @@
                             VerticalAlignment="Top"
                             Width="75"
                             Click="Pauze_Timer" />
+
                     <Button Content="Stop/Reset Timer"
                             HorizontalAlignment="Left"
                             Margin="379,199,0,0"
                             VerticalAlignment="Top"
                             Width="75"
                             Click="Undo_Timer" />
-                    <TextBox x:Name="minutebox"
-                             x:FieldModifier="public"
-                             HorizontalAlignment="Left"
-                             Height="23"
-                             Margin="10,198,0,0"
-                             TextWrapping="Wrap"
-                             Text="Minuut"
-                             VerticalAlignment="Top"
-                             Width="120" />
-                    <TextBox x:Name="secondbox"
-                             x:FieldModifier="public"
-                             HorizontalAlignment="Left"
-                             Height="23"
-                             Margin="10,234,0,0"
-                             TextWrapping="Wrap"
-                             Text="Seconde"
-                             VerticalAlignment="Top"
-                             Width="120" />
                     <Label x:Name="StateNameLabel"
                            Content="StateName"
                            HorizontalAlignment="Left"
@@ -222,6 +215,20 @@
                            Margin="24,131,0,0"
                            VerticalAlignment="Top"
                            Width="178" />
+                    <Button Content="Mins"
+                            Name="MinuteButton"
+                            HorizontalAlignment="Left"
+                            Margin="364,234,0,0"
+                            VerticalAlignment="Top"
+                            Width="61"
+                            Click="MinuteButton_Click" />
+                    <Button Content="Secs"
+                            Name="SecondButton"
+                            HorizontalAlignment="Left"
+                            Margin="286,233,0,0"
+                            VerticalAlignment="Top"
+                            Width="61"
+                            Click="SecondButton_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="StopWatch">
@@ -258,9 +265,7 @@
                             Click="Save_Time" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Settings">
-                <Grid Background="#FFE5E5E5" />
-            </TabItem>
+
         </TabControl>
 
     </Grid>

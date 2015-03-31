@@ -12,6 +12,7 @@ using System.Windows.Media;
 using SmartWatchDesignPatterns.DesignPatterns;
 using Timer = SmartWatchDesignPatterns.DesignPatterns.Timer.Timer;
 
+
 namespace SmartWatchDesignPatterns
 {
     /// <summary>
@@ -19,13 +20,16 @@ namespace SmartWatchDesignPatterns
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DesignPatterns.Timer.Timer t;
+        private DesignPatterns.Timer.Timer timer;
         private Storyboard storyboard = new Storyboard();
         private TimeCreator timec = new TimeCreator();
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
         private DesignPatterns.Stopwatch.Stopwatch _stopWatch = new TimeCreator().CreateStopwatch();
         private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
         private System.Timers.Timer _stopwatchTimer = new System.Timers.Timer(50);
+
+        private int minutes = 0;
+        private int seconds = 0;
 
         private TimeSpan ts = new TimeSpan();
        
@@ -60,61 +64,60 @@ namespace SmartWatchDesignPatterns
 
         #region Timerbuttons
         //Buttons voor Timer afdeling
-        private void Set_Timer(object sender, RoutedEventArgs e)
-        {
-            t = timec.CreateTimer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
-            minutebox.Text = "";
-            secondbox.Text = "";
-            MinuteLabel.Content = t.Minute;
-            SecondLabel.Content = t.Second;
-            //changeColorGrid();
-        }
 
         private void Start_Timer(object sender, RoutedEventArgs e)
         {
-            t.Context.ChangeState();
+            timer = timec.CreateTimer(minutes, seconds);
+            MinuteLabel.Content = timer.Minute;
+            SecondLabel.Content = timer.Second;
+            changeColorGrid();
+
+
+            timer.Context.ChangeState();
             Ttimer.Start();
-            //changeColorGrid();
+            changeColorGrid();
         }
 
         private void Pauze_Timer(object sender, RoutedEventArgs e)
         {
-            t.Context.ChangeState();
+            timer.Context.ChangeState();
             Ttimer.Stop();
-            //changeColorGrid();
+            changeColorGrid();
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
         {
+            minutes = 0;
+            seconds = 0;
             Ttimer.Stop();
-            MinuteLabel.Content = "";
-            SecondLabel.Content = "";
-            t.Context.ChangeStateDefault();
+            MinuteLabel.Content = minutes;
+            SecondLabel.Content = seconds;
+            timer.Context.ChangeStateDefault();
         }
         #endregion
 
         //DispatcherTimer Timer Tick Methodes
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (t.Minute == 0 && t.Second == 0)
+            if (timer.Minute == 0 && timer.Second == 0)
             {
                 Ttimer.Stop();
-                t.Context.ChangeStateAlarm();
+                timer.Context.ChangeStateAlarm();
             }
             else
             {
 
-                if (t.Second >= 1)
+                if (timer.Second >= 1)
                 {
-                    --t.Second;
+                    --timer.Second;
                 }
                 else
                 {
-                    t.Second = 59;
-                    --t.Minute;
+                    timer.Second = 59;
+                    --timer.Minute;
                 }
-                MinuteLabel.Content = t.Minute;
-                SecondLabel.Content = t.Second;
+                MinuteLabel.Content = timer.Minute;
+                SecondLabel.Content = timer.Second;
             }
 
         }
@@ -146,10 +149,10 @@ namespace SmartWatchDesignPatterns
         private void changeColorGrid()
         {
 
-            SolidColorBrush brush = conv.ConvertFromString(t.Context.Color) as SolidColorBrush;
+            SolidColorBrush brush = conv.ConvertFromString(timer.Context.Color) as SolidColorBrush;
             MainGrid.Background = brush;
-            MinuteLabel.Content = t.Minute;
-            SecondLabel.Content = t.Second;
+            MinuteLabel.Content = timer.Minute;
+            SecondLabel.Content = timer.Second;
         }
 
 
@@ -230,6 +233,21 @@ namespace SmartWatchDesignPatterns
         {
             MyWipedText.Text = _clock.Post.Title;
             MyWipedText.ToolTip = _clock.Post.Title;
+        }
+
+        private void MinuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            minutes += 1;
+            MinuteLabel.Content = minutes;
+        }
+
+        private void SecondButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (seconds < 59)
+            {
+                seconds += 1;
+            }
+            SecondLabel.Content = seconds;
         }
 
 
