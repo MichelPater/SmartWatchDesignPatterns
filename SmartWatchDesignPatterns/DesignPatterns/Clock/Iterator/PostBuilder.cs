@@ -51,7 +51,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
 
             for (int i = 0; i < posts.Count; i++)
             {
-                _postCollection[i] = _postCollection[i];
+                _postCollection[i] = posts[i];
             }
 
             return _postCollection;

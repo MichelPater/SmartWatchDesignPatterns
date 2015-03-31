@@ -14,7 +14,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     {
         Post First();
         Post Next();
-        bool IsDone { get; }
+        bool IsAtEnd { get; }
         Post CurrentItem { get; }
     }
 }

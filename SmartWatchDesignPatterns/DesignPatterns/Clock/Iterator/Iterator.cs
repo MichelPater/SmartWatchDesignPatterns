@@ -16,7 +16,6 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         private int _current = 0;
         private int _step = 1;
  
-        // Constructor
         public Iterator(Collection collection)
         {
             this._collection = collection;
@@ -28,16 +27,38 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
             _current = 0;
             return _collection[_current] as Post;
         }
+
+         public Post Last()
+         {
+             _current = _collection.Count - 1;
+             return _collection[_current] as Post;
+         }
+
  
         // Gets next item
         public Post Next()
         {
             _current += _step;
-            if (!IsDone)
+            if (!IsAtEnd)
                 return _collection[_current] as Post;
             else
+            {
                 return null;
+            }
         }
+
+         public Post Previous()
+         {
+             _current -= _step;
+             if (!IsAtBegin)
+             {
+                 return _collection[_current] as Post;
+             }
+             else
+             {
+                 return null;
+             }
+         }
  
         // Gets or sets stepsize
         public int Step
@@ -53,9 +74,14 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         }
  
         // Gets whether iteration is complete
-        public bool IsDone
+        public bool IsAtEnd
         {
             get { return _current >= _collection.Count; }
         }
+
+         public bool IsAtBegin
+         {
+             get { return _current < 0; }
+         }
     }
 }

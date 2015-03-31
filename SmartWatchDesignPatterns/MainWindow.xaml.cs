@@ -12,9 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RedditSharp.Things;
 using SmartWatchDesignPatterns.DesignPatterns.Clock;
+using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
 using swdp = SmartWatchDesignPatterns.DesignPatterns;
 using System.Windows.Threading;
+
 namespace SmartWatchDesignPatterns
 {
     /// <summary>
@@ -22,7 +25,7 @@ namespace SmartWatchDesignPatterns
     /// </summary>
     public partial class MainWindow : Window
     {
-        swdp.Timer.Timer t;
+        private swdp.Timer.Timer t;
 
         //DispatcherTimer benodigdheden
         private DispatcherTimer Ttimer;
@@ -31,18 +34,21 @@ namespace SmartWatchDesignPatterns
         {
             InitializeComponent();
 
-            timeLabel.Content  ="00:00";
+            timeLabel.Content = "00:00";
 
             var datetime = DateTime.Now;
 
-            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;     
+            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
-            SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
 
             //Constructor voor DispatcherTimer
             Ttimer = new DispatcherTimer();
             Ttimer.Interval = new TimeSpan(0, 0, 1);
             Ttimer.Tick += new EventHandler(Timer_Tick);
+
+
+            // SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
+            //CreatePost();
 
         }
 
@@ -95,17 +101,27 @@ namespace SmartWatchDesignPatterns
         }
 
 
-        
-        /*
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            RedditAPI.PostBuilder postBuilder = new RedditAPI.PostBuilder("r/ProgrammerHumor");
-            List<RedditSharp.Things.Post> posts = postBuilder.GetPosts();
 
-            foreach(var post in posts)
+
+
+
+
+        private void CreatePost()
+        {
+            PostBuilder postBuilder = new PostBuilder("r/ProgrammerHumor");
+            Collection posts = postBuilder.GetPosts();
+
+            Iterator iterator = new Iterator(posts);
+
+            for (Post post = iterator.First(); !iterator.IsAtEnd; post = iterator.Next())
             {
                 Console.WriteLine(post.Title);
             }
-        }*/
+            Console.WriteLine("_____________________________________");
+            for (Post post = iterator.Last(); !iterator.IsAtBegin; post = iterator.Previous())
+            {
+                Console.WriteLine(post.Title);
+            }
+        }
     }
 }
