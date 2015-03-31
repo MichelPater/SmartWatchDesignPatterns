@@ -29,10 +29,7 @@ namespace SmartWatchDesignPatterns
             timeLabel.Content  ="00:00";
 
             var datetime = DateTime.Now;
-            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
-
-   
-            
+            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;     
         }
 
         private void Set_Timer(object sender, RoutedEventArgs e)
@@ -46,7 +43,7 @@ namespace SmartWatchDesignPatterns
 
         private void Start_Timer(object sender, RoutedEventArgs e)
         {
-
+            t.Context.ChangeState();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -56,7 +53,7 @@ namespace SmartWatchDesignPatterns
 
         private void Timer_Button_Click(object sender, RoutedEventArgs e)
         {
-            //StateNameLabel.Content = t.getColor();
+            StateNameLabel.Content = t.Context.Color;
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
