@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartWatchDesignPatterns.DesignPatterns.Clock;
 using swdp = SmartWatchDesignPatterns.DesignPatterns;
 namespace SmartWatchDesignPatterns
 {
@@ -31,8 +32,8 @@ namespace SmartWatchDesignPatterns
             var datetime = DateTime.Now;
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
-   
-            
+
+            SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
         }
 
         private void Set_Timer(object sender, RoutedEventArgs e)
