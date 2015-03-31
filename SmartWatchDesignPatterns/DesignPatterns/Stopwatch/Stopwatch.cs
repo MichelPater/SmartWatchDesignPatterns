@@ -7,14 +7,14 @@ using wStopwatch = System.Diagnostics.Stopwatch;
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 {
-    class Stopwatch
+    class StopwatchHolder
     {
         wStopwatch wsw;
         string elapsedTime;
         Originator o;
         CareTaker c;
 
-        public Stopwatch()
+        public StopwatchHolder()
         {
             wsw = new wStopwatch();
 
