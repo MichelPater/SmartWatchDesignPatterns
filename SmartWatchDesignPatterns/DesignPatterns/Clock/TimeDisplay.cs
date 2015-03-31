@@ -18,7 +18,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 
             _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
 
-            _timer.Enabled = true; 
+            _timer.Enabled = true;
 
             InitializeTime();
         }
@@ -42,7 +42,8 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             _secondHandler.Tick();
-            Console.WriteLine(GetTime().ToString());
+            Console.WriteLine("1" + GetTime().ToString());
+            Console.WriteLine("2" + DateTime.Now.ToString());
         }
     }
 }
