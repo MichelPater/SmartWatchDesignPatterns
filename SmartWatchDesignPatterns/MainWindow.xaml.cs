@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -123,6 +124,11 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(FadeOutAnimation);
+            storyboard.Begin(MyWipedText);
+
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
@@ -136,6 +142,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
+            
         }
     }
 }

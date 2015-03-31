@@ -21,7 +21,7 @@
                            Width="227" />
 
                     <TextBlock Name="MyWipedText"
-                               Margin="10,196,10,10"
+                               Margin="11,196,9,10"
                                FontSize="48"
                                FontWeight="Bold"
                                Foreground="Maroon">
@@ -32,7 +32,9 @@ Temporary Text
                             <EventTrigger RoutedEvent="TextBlock.Loaded">
                                 <BeginStoryboard>
                                     <Storyboard Name="FadeOutStoryboard">
-                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                        <DoubleAnimation
+                                            x:Name="FadeOutAnimation"
+                                                        Storyboard.TargetProperty="Width"
                                                          From="0"
                                                          To="480"
                                                          Duration="0:0:1"
