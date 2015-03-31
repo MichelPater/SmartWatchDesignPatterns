@@ -22,10 +22,11 @@ namespace SmartWatchDesignPatterns
         private DesignPatterns.Timer.Timer t;
         private Storyboard storyboard = new Storyboard();
         private TimeCreator timec = new TimeCreator();
-        private TimeSpan ts;
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
         private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
 
+        private TimeSpan ts = new TimeSpan();
+        private Stopwatch sw = new Stopwatch();
 
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
@@ -52,13 +53,14 @@ namespace SmartWatchDesignPatterns
 
             //Constructor voor DispatcherTimer Stopwatch
             Stimer = new DispatcherTimer();
-            Stimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            Stimer.Interval = new TimeSpan(0, 0, 1);
             Stimer.Tick += stopWatch_Update;
 
             _clockTimer.Elapsed += ClockTimerElapsedEvent;
             _clockTimer.Start();
         }
 
+        #region Timerbuttons
         //Buttons voor Timer afdeling
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
@@ -91,6 +93,7 @@ namespace SmartWatchDesignPatterns
             SecondLabel.Content = "";
             t.Context.ChangeStateDefault();
         }
+        #endregion
 
         //DispatcherTimer Timer Tick Methodes
         private void Timer_Tick(object sender, EventArgs e)
@@ -116,23 +119,25 @@ namespace SmartWatchDesignPatterns
                 SecondLabel.Content = t.Second;
             }
 
-           }
+        }
 
         private void stopWatch_Update(object sender, EventArgs e)
         {
-            ts = new TimeSpan();
+            ts = sw.wStopwatch.Elapsed;
 
-            //ts = sw.ElapsedTime;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);  
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
+            ts.Hours, ts.Minutes, ts.Seconds);
+
+            Console.WriteLine(elapsedTime);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            //swLabel.Content = sw.ElapsedTime;
-            //mementoLabel.Content = sw.CareTaker.Memento.savedTime;
+            sw.wStopwatch.Start();
+
             
         }
+
 
         private void changeColorGrid()
         {
@@ -189,5 +194,6 @@ namespace SmartWatchDesignPatterns
                 timeLabel.Content = _clock.GetStringFormattedTime();
             }));
         }
+
     }
 }
