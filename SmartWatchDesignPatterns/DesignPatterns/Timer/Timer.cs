@@ -16,22 +16,29 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
     {
         private int second;
         private int minute;
-        private StatePattern _state;
+        private Context context;
         static wTimer myTimer = new wTimer();
 
         public Timer(int minute, int second)
         {
-            _state = new StatePattern();
+            context = new Context(new DefaultState());
             this.minute = minute;
             this.second = second;
         }
-
+        /*
         public StatePattern State
         {
             get { return _state; }
             set { _state = value; }
         }
+        */
 
+        public Context Context
+        {
+            get { return context; }
+            set { context = value; }
+        }
+        
         public int getMinute()
         {
             return minute;

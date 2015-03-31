@@ -8,86 +8,109 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
 {
     public class StatePattern
     {
-        
-            State state = new DefaultState();
-        
+        //Context c = new Context(new DefaultState());        
     }
         abstract class State
         {
-            public abstract void StateUpdate(State state);
-            public abstract string getColor();
+            public abstract void StateUpdate(Context context);
+        }
+
+    /*Alle states die worden gebruikt
+        * Default voor de start waarbij de tijd wordt opgegeven
+        * Alarmed voor wanneer de tijd op is
+        * Running voor lopend
+        * Pauze voor pauze
+        */
+    class DefaultState : State
+    {
+        public DefaultState()
+        {
             
         }
 
-        /*Alle states die worden gebruikt
-         * Default voor de start waarbij de tijd wordt opgegeven
-         * Alarmed voor wanneer de tijd op is
-         * Running voor lopend
-         * Pauze voor pauze
-         */
-        class DefaultState : State
+        public override void StateUpdate(Context context)
         {
-            string color = "blue";
-            string stateName = "Default";
+            context.State = new RunningState();
+            context.Color = "blue";
+            context.StateName = "Default";
+        }
 
-            public override void StateUpdate(State state)
-            {
-                state = new DefaultState();
-            }
+        public override void StateUpdate(Context context, State state)
+        {
+            context.State = state;
+        }
+    }
+    class RunningState : State
+    {
+        
+        public override void StateUpdate(Context context)
+        {
+            context.State = new PauzeState();
+            context.Color = "green";
+            context.StateName = "Running";
+        }
+    }
+    class AlarmState : State
+    {
+        public override void StateUpdate(Context context)
+        {
+            context.State = new DefaultState();
+            context.Color = "red";
+            context.StateName = "Alarmed";
+        }
+    }
 
-            public override string getColor()
-            {
-                return color;
-            }
+    class PauzeState : State
+    {
+        public override void StateUpdate(Context context)
+        {
+            context.State = new RunningState();
+            context.Color = "lightblue";
+            context.StateName = "Pauze";
+        }
+    }
 
-            
+    class Context
+    {
+        private State state;
+        private string color;
+        private string stateName;
+
+        public Context(State state)
+        {
+            this.state = state;
+            color = "blue";
+            stateName = "Default";
+        }
+
+        public State State
+        {
+            get { return state; }
+            set { state = value; }
 
         }
 
-        class RunningState : State
+        public string Color
         {
-            public override void StateUpdate(State state)
-            {
-                state = new PauzeState();
-            }
-            string color = "green";
-            string stateName = "Running";
-
-            public override string getColor()
-            {
-                return color;
-            }
+            get { return color; }
+            set { color = value; }
         }
 
-        class AlarmState : State
+        public string StateName
         {
-            public override void StateUpdate(State state)
-            {
-                state = new AlarmState();
-            }
-            string color = "red";
-            string stateName = "Alarmed";
-
-            public override string getColor()
-            {
-                return color;
-            }
+            get { return stateName; }
+            set { stateName = value; }
         }
 
-        class PauzeState : State
+        public void ChangeState()
         {
-            public override void StateUpdate(State state)
-            {
-                state = new RunningState();
-            }
-            string color = "lightblue";
-            string stateName = "Pauze";
-
-            public override string getColor()
-            {
-                return color;
-            }
-
+            state.StateUpdate(this);
         }
+
+        public void ChangeStateAlarm()
+        {
+            state.StateUpdate(this, new PauzeState());
+        }
+    }
 }
 
