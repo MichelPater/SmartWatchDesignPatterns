@@ -17,8 +17,6 @@ namespace SmartWatchDesignPatterns
     public partial class MainWindow : Window
     {
         private Timer t;
-        private Iterator iterator;
-        private Post post;
         private Storyboard storyboard = new Storyboard();
         private Stopwatch sw = new Stopwatch();
         private TimeSpan ts;
@@ -51,9 +49,6 @@ namespace SmartWatchDesignPatterns
             Stimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             Stimer.Tick += stopWatch_Update;
 
-
-            //SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
-            CreatePost();
         }
 
         //Buttons voor Timer afdeling
@@ -140,15 +135,7 @@ namespace SmartWatchDesignPatterns
             SecondLabel.Content = t.Second;
         }
         
-        private void CreatePost()
-        {
-            PostBuilder postBuilder = new PostBuilder("r/ProgrammerHumor");
-            Collection posts = postBuilder.GetPosts();
 
-            iterator = new Iterator(posts);
-            post = iterator.CurrentItem;
-            MyWipedText.Text = post.Title;
-        }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {

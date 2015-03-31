@@ -10,7 +10,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
      /// <summary>
     /// The 'ConcreteIterator' class
     /// </summary>
-    class Iterator : IAbstractIterator
+    public class Iterator : IAbstractIterator
     {
         private Collection _collection;
         private int _current = 0;
