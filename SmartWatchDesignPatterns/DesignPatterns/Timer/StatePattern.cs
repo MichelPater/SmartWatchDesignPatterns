@@ -13,7 +13,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
         abstract class State
         {
             public abstract void StateUpdate(Context context);
-            public abstract void StateUpdate(Context context, string status)
+            public abstract void StateUpdate(Context context, string status);
         }
 
     /*Alle states die worden gebruikt
