@@ -32,7 +32,6 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
         {
             var datetime = DateTime.Now;
 
-            TimeDisplay _timeDisplay = new TimeDisplay();
             CreatePost();
         }
 
@@ -45,9 +44,9 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
             _post = _iterator.CurrentItem;
         }
 
-        private void UpdateClock()
+        public String GetStringFormattedTime()
         {
-            _timeSingelton.GetTime();
+            return _timeSingelton.GetTime().ToString("HH:mm:ss");
         }
     }
 }

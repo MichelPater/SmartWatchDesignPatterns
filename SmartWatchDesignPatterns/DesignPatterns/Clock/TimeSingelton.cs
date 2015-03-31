@@ -19,7 +19,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 
         public DateTime GetTime()
         {
-            return DateTime.UtcNow;
+            return DateTime.Now;
         }
     }
 }

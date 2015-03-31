@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Timers;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using RedditSharp.Things;
 using SmartWatchDesignPatterns.DesignPatterns.Clock;
 using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
-using SmartWatchDesignPatterns.DesignPatterns.Timer;
 using SmartWatchDesignPatterns.DesignPatterns.Stopwatch;
 using System.Windows.Media;
 using SmartWatchDesignPatterns.DesignPatterns;
+using Timer = SmartWatchDesignPatterns.DesignPatterns.Timer.Timer;
 
 namespace SmartWatchDesignPatterns
 {
@@ -22,6 +24,7 @@ namespace SmartWatchDesignPatterns
         private TimeCreator timec = new TimeCreator();
         private TimeSpan ts;
         private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
+        private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
 
 
         //Benodigd voor StatePattern color verandering
@@ -51,8 +54,10 @@ namespace SmartWatchDesignPatterns
             Stimer = new DispatcherTimer();
             Stimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             Stimer.Tick += stopWatch_Update;
-        }
 
+            _clockTimer.Elapsed += ClockTimerElapsedEvent;
+            _clockTimer.Start();
+        }
 
         //Buttons voor Timer afdeling
         private void Set_Timer(object sender, RoutedEventArgs e)
@@ -177,5 +182,12 @@ namespace SmartWatchDesignPatterns
             storyboard.Begin(MyWipedText);
         }
 
+        private void ClockTimerElapsedEvent(object sender, ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(delegate()
+            {
+                timeLabel.Content = _clock.GetStringFormattedTime();
+            }));
+        }
     }
 }
