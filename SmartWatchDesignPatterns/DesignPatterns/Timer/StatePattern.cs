@@ -13,6 +13,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
         abstract class State
         {
             public abstract void StateUpdate(Context context);
+            public abstract void StateUpdate(Context context, string status)
         }
 
     /*Alle states die worden gebruikt
@@ -35,10 +36,13 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
             context.StateName = "Default";
         }
 
-        public override void StateUpdate(Context context, State state)
+         public override void StateUpdate(Context context, string status)
         {
-            context.State = state;
+            context.State = new AlarmState();
+            context.Color = "red";
+            context.StateName = "Alarmed";
         }
+
     }
     class RunningState : State
     {
@@ -109,7 +113,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
 
         public void ChangeStateAlarm()
         {
-            state.StateUpdate(this, new PauzeState());
+            state.StateUpdate(this, "alarm");
         }
     }
 }

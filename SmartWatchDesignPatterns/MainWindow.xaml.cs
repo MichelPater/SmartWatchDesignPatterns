@@ -30,14 +30,11 @@ namespace SmartWatchDesignPatterns
             timeLabel.Content  ="00:00";
 
             var datetime = DateTime.Now;
-<<<<<<< HEAD
-            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;     
-=======
-            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
+            timeLabel.Content = datetime.Hour + ":" + datetime.Minute;     
 
             SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
->>>>>>> d87eca5b65e122c2ca8232f2411ebc7d5a8e3ef2
+
         }
 
         private void Set_Timer(object sender, RoutedEventArgs e)
