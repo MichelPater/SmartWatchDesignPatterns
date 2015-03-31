@@ -6,6 +6,7 @@ using RedditSharp.Things;
 using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
 using SmartWatchDesignPatterns.DesignPatterns.Timer;
 using swdp = SmartWatchDesignPatterns.DesignPatterns;
+using System.Windows.Media;
 
 namespace SmartWatchDesignPatterns
 {
@@ -18,6 +19,9 @@ namespace SmartWatchDesignPatterns
         private Iterator iterator;
         private Post post;
         private Storyboard storyboard = new Storyboard();
+
+        //Benodigd voor StatePattern color verandering
+        BrushConverter conv = new BrushConverter();
 
         //DispatcherTimer benodigdheden
         private DispatcherTimer Ttimer;
@@ -53,18 +57,21 @@ namespace SmartWatchDesignPatterns
             secondbox.Text = "";
             MinuteLabel.Content = t.Minute;
             SecondLabel.Content = t.Second;
+            //changeColorGrid();
         }
 
         private void Start_Timer(object sender, RoutedEventArgs e)
         {
             t.Context.ChangeState();
             Ttimer.Start();
+           //changeColorGrid();
         }
 
         private void Pauze_Timer(object sender, RoutedEventArgs e)
         {
             t.Context.ChangeState();
             Ttimer.Stop();
+            //changeColorGrid();
 
         }
 
@@ -73,23 +80,40 @@ namespace SmartWatchDesignPatterns
             Ttimer.Stop();
             MinuteLabel.Content = "";
             SecondLabel.Content = "";
+            t.Context.ChangeStateDefault();
         }
 
         //DispatcherTimer Tick Methodes
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (t.Second >= 1)
+            if (t.Minute == 0 && t.Second == 0)
             {
-                --t.Second;
+                Ttimer.Stop();
+                t.Context.ChangeStateAlarm();
             }
             else
             {
-                t.Second = 59;
-                --t.Minute;
-            }
-            MinuteLabel.Content = t.Minute;
-            SecondLabel.Content = t.Second;
 
+                if (t.Second >= 1)
+                {
+                    --t.Second;
+                }
+                else
+                {
+                    t.Second = 59;
+                    --t.Minute;
+                }
+                MinuteLabel.Content = t.Minute;
+                SecondLabel.Content = t.Second;
+            }
+
+           }
+
+        private void changeColorGrid()
+        {
+            
+            SolidColorBrush brush = conv.ConvertFromString(t.Context.Color) as SolidColorBrush;
+            MainGrid.Background = brush;
         }
         
         private void CreatePost()

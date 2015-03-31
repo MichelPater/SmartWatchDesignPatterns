@@ -43,7 +43,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
                     break;
                 case "default":
                     context.State = new DefaultState();
-                    context.Color = "blue";
+                    context.Color = "lightblue";
                     context.StateName = "Default";
                     break;
             }
@@ -55,6 +55,57 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
         public override void StateUpdate(Context context)
         {
             context.State = new PauzeState();
+            context.Color = "pink";
+            context.StateName = "Running";
+        }
+
+        public override void StateUpdate(Context context, string status)
+        {
+            switch(status){
+                case "alarm":
+                    context.State = new AlarmState();
+                    context.Color = "red";
+                    context.StateName = "Alarmed";
+                    break;
+                case "default":
+                    context.State = new DefaultState();
+                    context.Color = "lightblue";
+                    context.StateName = "Default";
+                    break;
+            }
+        }
+    }
+    class AlarmState : State
+    {
+        public override void StateUpdate(Context context)
+        {
+            context.State = new DefaultState();
+            context.Color = "lightblue";
+            context.StateName = "Default";
+        }
+
+        public override void StateUpdate(Context context, string status)
+        {
+            switch(status){
+                case "alarm":
+                    context.State = new AlarmState();
+                    context.Color = "red";
+                    context.StateName = "Alarmed";
+                    break;
+                case "default":
+                    context.State = new DefaultState();
+                    context.Color = "lightblue";
+                    context.StateName = "Default";
+                    break;
+            }
+        }
+    }
+
+    class PauzeState : State
+    {
+        public override void StateUpdate(Context context)
+        {
+            context.State = new RunningState();
             context.Color = "green";
             context.StateName = "Running";
         }
@@ -69,58 +120,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
                     break;
                 case "default":
                     context.State = new DefaultState();
-                    context.Color = "blue";
-                    context.StateName = "Default";
-                    break;
-            }
-        }
-    }
-    class AlarmState : State
-    {
-        public override void StateUpdate(Context context)
-        {
-            context.State = new DefaultState();
-            context.Color = "red";
-            context.StateName = "Alarmed";
-        }
-
-        public override void StateUpdate(Context context, string status)
-        {
-            switch(status){
-                case "alarm":
-                    context.State = new AlarmState();
-                    context.Color = "red";
-                    context.StateName = "Alarmed";
-                    break;
-                case "default":
-                    context.State = new DefaultState();
-                    context.Color = "blue";
-                    context.StateName = "Default";
-                    break;
-            }
-        }
-    }
-
-    class PauzeState : State
-    {
-        public override void StateUpdate(Context context)
-        {
-            context.State = new RunningState();
-            context.Color = "lightblue";
-            context.StateName = "Pauze";
-        }
-
-        public override void StateUpdate(Context context, string status)
-        {
-            switch(status){
-                case "alarm":
-                    context.State = new AlarmState();
-                    context.Color = "red";
-                    context.StateName = "Alarmed";
-                    break;
-                case "default":
-                    context.State = new DefaultState();
-                    context.Color = "blue";
+                    context.Color = "lightblue";
                     context.StateName = "Default";
                     break;
             }
@@ -136,7 +136,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
         public Context(State state)
         {
             this.state = state;
-            color = "blue";
+            color = "lightblue";
             stateName = "Default";
         }
 

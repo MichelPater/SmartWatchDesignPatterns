@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartWatchDesignPatterns", "SmartWatchDesignPatterns\SmartWatchDesignPatterns.csproj", "{AD02BD61-C73E-450F-9569-DDDEEBF06465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedditSharp", "C:\Users\Michel\Desktop\RedditSharp-master\RedditSharp\RedditSharp.csproj", "{A368CB75-75F0-4489-904D-B5CEBB0FE624}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedditSharp", "C:\Users\Gerjan van Oenen\Desktop\RedditSharp-master\RedditSharp\RedditSharp.csproj", "{A368CB75-75F0-4489-904D-B5CEBB0FE624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
