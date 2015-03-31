@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SmartWatchDesignPatterns.DesignPatterns.Clock;
 using swdp = SmartWatchDesignPatterns.DesignPatterns;
+using System.Windows.Threading;
 namespace SmartWatchDesignPatterns
 {
     /// <summary>
@@ -22,6 +23,9 @@ namespace SmartWatchDesignPatterns
     public partial class MainWindow : Window
     {
         swdp.Timer.Timer t;
+
+        //DispatcherTimer benodigdheden
+        private DispatcherTimer Ttimer;
 
         public MainWindow()
         {
@@ -35,36 +39,61 @@ namespace SmartWatchDesignPatterns
 
             SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
 
+            //Constructor voor DispatcherTimer
+            Ttimer = new DispatcherTimer();
+            Ttimer.Interval = new TimeSpan(0, 0, 1);
+            Ttimer.Tick += new EventHandler(Timer_Tick);
+
         }
+
+        //Buttons voor Timer afdeling
 
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
             t = new swdp.Timer.Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
             minutebox.Text = "";
             secondbox.Text = "";
-            StateNameLabel.Content = t.getSecond();
-            StateColorLabel.Content = t.getMinute();
+            MinuteLabel.Content = t.Minute;
+            SecondLabel.Content = t.Second;
         }
 
         private void Start_Timer(object sender, RoutedEventArgs e)
         {
             t.Context.ChangeState();
+            Ttimer.Start();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Pauze_Timer(object sender, RoutedEventArgs e)
         {
+            t.Context.ChangeState();
+            Ttimer.Stop();
 
-        }
-
-        private void Timer_Button_Click(object sender, RoutedEventArgs e)
-        {
-            StateNameLabel.Content = t.Context.Color;
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
         {
-
+            Ttimer.Stop();
+            MinuteLabel.Content = "";
+            SecondLabel.Content = "";
         }
+
+        //DispatcherTimer Tick Methodes
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (t.Second >= 1)
+            {
+                --t.Second;
+            }
+            else
+            {
+                t.Second = 59;
+                --t.Minute;
+            }
+            MinuteLabel.Content = t.Minute;
+            SecondLabel.Content = t.Second;
+            
+        }
+
 
         
         /*
