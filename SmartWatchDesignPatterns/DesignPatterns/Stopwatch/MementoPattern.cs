@@ -8,7 +8,6 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 {
     class MementoPattern
     {
-
     }
 
     class Originator

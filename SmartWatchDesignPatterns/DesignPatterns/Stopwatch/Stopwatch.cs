@@ -13,6 +13,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
         TimeSpan ts;
         String elapsedTime;
         Originator o;
+
         public Stopwatch()
         {
             Originator o = new Originator();

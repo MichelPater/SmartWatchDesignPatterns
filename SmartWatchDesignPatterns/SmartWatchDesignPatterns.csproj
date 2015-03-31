@@ -69,6 +69,7 @@
     <Compile Include="DesignPatterns\Clock\Iterator\Iterator.cs" />
     <Compile Include="DesignPatterns\Clock\TimeDisplay.cs" />
     <Compile Include="DesignPatterns\ITime.cs" />
+    <Compile Include="DesignPatterns\Stopwatch\MementoPattern.cs" />
     <Compile Include="DesignPatterns\Stopwatch\Stopwatch.cs" />
     <Compile Include="DesignPatterns\TimeCreator.cs" />
     <Compile Include="DesignPatterns\Timer\StatePattern.cs" />
