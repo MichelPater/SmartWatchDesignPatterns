@@ -12,7 +12,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         private readonly Subreddit _subreddit;
         private readonly FromTime timePeriod = FromTime.Week;
         private String _subredditName;
-        private int _amountOfPosts = 20;
+        private int _amountOfPosts = 5;
 
         /// <summary>
         ///     Constructor with changeable subredditname

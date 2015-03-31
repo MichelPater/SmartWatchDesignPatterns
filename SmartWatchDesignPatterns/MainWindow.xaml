@@ -25,20 +25,18 @@
                                FontSize="48"
                                FontWeight="Bold"
                                Foreground="Maroon">
-  This is wiped text
+Temporary Text
 
   <!-- Animates the text block's width. -->
                         <TextBlock.Triggers>
                             <EventTrigger RoutedEvent="TextBlock.Loaded">
                                 <BeginStoryboard>
-                                    <Storyboard>
+                                    <Storyboard Name="FadeOutStoryboard">
                                         <DoubleAnimation Storyboard.TargetProperty="Width"
                                                          From="0"
                                                          To="480"
                                                          Duration="0:0:1"
-                                                         FillBehavior="Stop"
-                                                         AutoReverse="True"
-                                                         RepeatBehavior="Forever" />
+                                                         FillBehavior="HoldEnd" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

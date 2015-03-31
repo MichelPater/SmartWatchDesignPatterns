@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using wTimer = System.Windows.Forms.Timer;
+
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Timer
 {
@@ -17,7 +17,6 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
         private int second;
         private int minute;
         private Context context;
-        static wTimer myTimer = new wTimer();
 
         public Timer(int minute, int second)
         {
@@ -39,45 +38,18 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Timer
             set { context = value; }
         }
         
-        public int getMinute()
+        public int Minute
         {
-            return minute;
+            get { return minute; }
+            set { minute = value; }
         }
 
-        public int getSecond()
+        public int Second
         {
-            return second;
+            get { return second; }
+            set { second = value; }
         }
 
-        private void TimeTickEvent(Object myObject, EventArgs myEventArgs)
-        {
-            if (minute == 0 && second == 0)
-            {
-                //switch state naar de AlarmedState
-            }
-            else
-            {
-                if (second >= 1)
-                {
-                    --second;
-                }
-                else
-                {
-                    second = 59;
-                    --minute;
-                }
-            }
-        }
-
-        public void Main()
-        {
-            myTimer.Tick += new EventHandler(TimeTickEvent);
-
-            myTimer.Interval = 1000;
-            myTimer.Start();
-
-            //AlarmState activeren met exitflag?
-        }
     }
 
 

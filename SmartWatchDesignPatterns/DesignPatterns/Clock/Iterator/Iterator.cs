@@ -28,6 +28,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
             return _collection[_current] as Post;
         }
 
+        //GetLast
          public Post Last()
          {
              _current = _collection.Count - 1;
@@ -73,15 +74,16 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
             get { return _collection[_current] as Post; }
         }
  
-        // Gets whether iteration is complete
+        // Gets whether iteration is at the end
         public bool IsAtEnd
         {
             get { return _current >= _collection.Count; }
         }
 
+        //Get wheter iteration is at begin
          public bool IsAtBegin
          {
-             get { return _current < 0; }
+             get { return _current <= 0; }
          }
     }
 }

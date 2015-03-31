@@ -16,6 +16,7 @@ using RedditSharp.Things;
 using SmartWatchDesignPatterns.DesignPatterns.Clock;
 using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
 using swdp = SmartWatchDesignPatterns.DesignPatterns;
+using System.Windows.Threading;
 
 namespace SmartWatchDesignPatterns
 {
@@ -25,8 +26,9 @@ namespace SmartWatchDesignPatterns
     public partial class MainWindow : Window
     {
         private swdp.Timer.Timer t;
-        private Iterator iterator;
-        private Post post;
+
+        //DispatcherTimer benodigdheden
+        private DispatcherTimer Ttimer;
 
         public MainWindow()
         {
@@ -38,46 +40,79 @@ namespace SmartWatchDesignPatterns
 
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
+
+            //Constructor voor DispatcherTimer
+            Ttimer = new DispatcherTimer();
+            Ttimer.Interval = new TimeSpan(0, 0, 1);
+            Ttimer.Tick += new EventHandler(Timer_Tick);
+
+
             // SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
-            CreatePost();
+            //CreatePost();
+
         }
+
+        //Buttons voor Timer afdeling
 
         private void Set_Timer(object sender, RoutedEventArgs e)
         {
             t = new swdp.Timer.Timer(Int32.Parse(minutebox.Text), Int32.Parse(secondbox.Text));
             minutebox.Text = "";
             secondbox.Text = "";
-            StateNameLabel.Content = t.getSecond();
-            StateColorLabel.Content = t.getMinute();
+            MinuteLabel.Content = t.Minute;
+            SecondLabel.Content = t.Second;
         }
 
         private void Start_Timer(object sender, RoutedEventArgs e)
         {
             t.Context.ChangeState();
+            Ttimer.Start();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Pauze_Timer(object sender, RoutedEventArgs e)
         {
+            t.Context.ChangeState();
+            Ttimer.Stop();
 
-        }
-
-        private void Timer_Button_Click(object sender, RoutedEventArgs e)
-        {
-            StateNameLabel.Content = t.Context.Color;
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
         {
-
+            Ttimer.Stop();
+            MinuteLabel.Content = "";
+            SecondLabel.Content = "";
         }
+
+        //DispatcherTimer Tick Methodes
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (t.Second >= 1)
+            {
+                --t.Second;
+            }
+            else
+            {
+                t.Second = 59;
+                --t.Minute;
+            }
+            MinuteLabel.Content = t.Minute;
+            SecondLabel.Content = t.Second;
+            
+        }
+
+
+
+
+
+
 
         private void CreatePost()
         {
             PostBuilder postBuilder = new PostBuilder("r/ProgrammerHumor");
             Collection posts = postBuilder.GetPosts();
 
-             iterator = new Iterator(posts);
-            /*
+            Iterator iterator = new Iterator(posts);
+
             for (Post post = iterator.First(); !iterator.IsAtEnd; post = iterator.Next())
             {
                 Console.WriteLine(post.Title);
@@ -86,25 +121,7 @@ namespace SmartWatchDesignPatterns
             for (Post post = iterator.Last(); !iterator.IsAtBegin; post = iterator.Previous())
             {
                 Console.WriteLine(post.Title);
-            }*/
-        }
-
-        private void PreviousButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!iterator.IsAtBegin)
-            {
-               post = iterator.Previous();
             }
-            MyWipedText.Text = post.Title;
-        }
-
-        private void NextButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!iterator.IsAtEnd)
-            {
-                post = iterator.Next();
-            }
-            MyWipedText.Text = post.Title;
         }
     }
 }
