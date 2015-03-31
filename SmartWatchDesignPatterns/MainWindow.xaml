@@ -20,8 +20,8 @@
 
             <TabItem Header="Clock"
                      HorizontalAlignment="Center">
-
-
+                
+                
                 <Grid Background="#FFE5E5E5">
                     <Image Margin="0,10,-9,85"
                            Source="Resources/alarmclock_2.jpg"
@@ -50,7 +50,7 @@
                                Text="Temporary Text"
                                TextTrimming="CharacterEllipsis"
                                FontFamily="{StaticResource DotMatrixFontFamily}">
-                  
+                        
   <!-- Animates the text block's width. -->
                         <TextBlock.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
@@ -89,11 +89,11 @@
                             VerticalAlignment="Top"
                             Width="75"
                             Click="PreviousButton_Click" />
-
+                
                 </Grid>
             </TabItem>
             <TabItem Header="Timer">
-                <Grid x:Name="MainGrid"
+                <Grid x:Name="MainGrid" 
                       Background="#FFE5E5E5">
                     <Label x:Name="MinuteLabel"
                            Content="MinuteLabel"
@@ -153,35 +153,22 @@
                              Text="Seconde"
                              VerticalAlignment="Top"
                              Width="120" />
-                    <Label x:Name="StateNameLabel"
-                           Content="StateName"
-                           HorizontalAlignment="Left"
-                           Height="36"
-                           Margin="24,131,0,0"
-                           VerticalAlignment="Top"
+                    <Label x:Name="StateNameLabel" 
+                           Content="StateName" 
+                           HorizontalAlignment="Left" 
+                           Height="36" 
+                           Margin="24,131,0,0" 
+                           VerticalAlignment="Top" 
                            Width="178" />
                 </Grid>
             </TabItem>
             <TabItem Header="StopWatch">
-                <Grid Background="#FFE5E5E5">
-                    <Label x:Name="swLabel"
-                           Content="StopWatchTime"
-                           HorizontalAlignment="Left"
-                           Margin="35,110,0,0"
-                           VerticalAlignment="Top"
-                           Width="117" />
-                    <Label x:Name="mementoLabel"
-                           Content="MementoLabel"
-                           HorizontalAlignment="Left"
-                           Margin="266,110,0,0"
-                           VerticalAlignment="Top"
-                           Width="104" />
-                    <Button Content="Start Stopwatch"
-                            HorizontalAlignment="Left"
-                            Margin="199,222,0,0"
-                            VerticalAlignment="Top"
-                            Width="106"
-                            Click="Button_Click" />
+                <Grid Background="#FFE5E5E5" >
+                    <Label x:Name="swLabel" Content="StopWatchTime" HorizontalAlignment="Left" Margin="35,110,0,0" VerticalAlignment="Top" Width="117"/>
+                    <Label x:Name="mementoLabel" Content="Geen Memento" HorizontalAlignment="Left" Margin="266,110,0,0" VerticalAlignment="Top" Width="104"/>
+                    <Button Content="Start Stopwatch" HorizontalAlignment="Left" Margin="35,161,0,0" VerticalAlignment="Top" Width="106" Click="Start_Stopwatch"/>
+                    <Button Content="Stop Stopwatch" HorizontalAlignment="Left" Margin="35,203,0,0" VerticalAlignment="Top" Width="106" Click="Stop_Stopwatch"/>
+                    <Button Content="Save Time" HorizontalAlignment="Left" Margin="236,203,0,0" VerticalAlignment="Top" Width="75" Click="Save_Time"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">

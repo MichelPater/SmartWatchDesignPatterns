@@ -10,9 +10,9 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
     class Stopwatch
     {
         wStopwatch wsw;
-        TimeSpan ts;
         Originator o;
         CareTaker c;
+        Memento m;
 
         public Stopwatch()
         {
@@ -22,10 +22,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 
             c = new CareTaker();
 
-            //Misschien in factory of mainwindow plaatsen later
-            ts = new TimeSpan();
-
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",ts.Hours, ts.Minutes, ts.Seconds);
+            m = o.CreateMemento();
             
         }
 
@@ -33,6 +30,24 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
         {
             get { return wsw; }
             set { wsw = value; }
+        }
+
+        public Originator Originator
+        {
+            get { return o; }
+            set { o = value; }
+        }
+
+        public CareTaker CareTaker
+        {
+            get { return c; }
+            set { c = value; }
+        }
+
+        public Memento Memento
+        {
+            get { return m;}
+            set { m = value; }
         }
     }
 }
