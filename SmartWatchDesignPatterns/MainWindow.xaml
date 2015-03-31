@@ -166,7 +166,7 @@
                            Margin="44,0,55,0" />
 
                     <Label x:Name="MinuteLabel"
-                           Content="00"
+                           Content="0"
                            FontSize="60"
                            FontWeight="Bold"
                            Foreground="Maroon"
@@ -178,7 +178,7 @@
                            Width="120"
                            Height="75" />
                     <Label x:Name="SecondLabel"
-                           Content="00"
+                           Content="0"
                            FontSize="60"
                            FontWeight="Bold"
                            Foreground="Maroon"
@@ -189,104 +189,115 @@
                            Margin="241,56,0,0"
                            Width="120"
                            Height="75" />
-                    <Button Content="Start Timer"
-                            HorizontalAlignment="Left"
-                            Margin="149,198,0,0"
+                    <Button 
+                        BorderThickness="0"
+                            Background="Transparent"
+                        HorizontalAlignment="Left"
+                            Margin="252,158,0,0"
                             VerticalAlignment="Top"
                             Width="75"
-                            Click="Start_Timer" />
-                    <Button Content="Pauze Timer"
-                            HorizontalAlignment="Left"
-                            Margin="260,199,0,0"
-                            VerticalAlignment="Top"
-                            Width="75"
-                            Click="Pauze_Timer" />
+                            Click="Start_Timer" >
+                        <Image Source="Resources/start.jpg"
+                              />
+                    </Button>
 
-                    <Button Content="Stop/Reset Timer"
+
+                    <Button BorderThickness="0"
+                            Background="Transparent"
                             HorizontalAlignment="Left"
-                            Margin="379,199,0,0"
+                            Margin="348,158,0,0"
                             VerticalAlignment="Top"
                             Width="75"
-                            Click="Undo_Timer" />
-                    <Label x:Name="StateNameLabel"
-                           Content="StateName"
-                           HorizontalAlignment="Left"
-                           Height="36"
-                           Margin="24,131,0,0"
-                           VerticalAlignment="Top"
-                           Width="178" />
-                    <Button Content="Mins"
+                            Click="Undo_Timer" >
+                        <Image Source="Resources/stop.jpg" />
+                    </Button>
+
+              
+                    <Button BorderThickness="0"
                             Name="MinuteButton"
                             HorizontalAlignment="Left"
-                            Margin="364,234,0,0"
+                            Margin="114,158,0,0"
                             VerticalAlignment="Top"
-                            Width="61"
-                            Click="MinuteButton_Click" />
-                    <Button Content="Secs"
+                            Width="60"
+                            Click="MinuteButton_Click"
+                            Background="Transparent">
+                        <Image Source="Resources/minutes.jpg" />
+                    </Button>
+                    <Button BorderThickness="0"
+                            Background="Transparent"
                             Name="SecondButton"
                             HorizontalAlignment="Left"
-                            Margin="286,233,0,0"
+                            Margin="192,166,0,0"
                             VerticalAlignment="Top"
-                            Width="61"
-                            Click="SecondButton_Click" />
+                            Width="36"
+                            Click="SecondButton_Click">
+
+                        <Image Source="Resources/seconds.jpg"
+                               Height="36"
+                               Width="37" />
+
+                    </Button>
                 </Grid>
             </TabItem>
             <TabItem Header="StopWatch">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="White">
+
+                    <Image Margin="236,10,96,85"
+                           Source="Resources/clipboard.jpg"
+                            />
+                    <Image Margin="19,14,313,81"
+                           Source="Resources/stopwatch.jpg" />
+
                     <Label x:Name="swLabel"
-                           Content="StopWatchTime"
+                           Content="00:00:00:00"
                            HorizontalAlignment="Left"
-                           Margin="35,110,0,0"
+                           Margin="53,60,0,0"
                            VerticalAlignment="Top"
-                           Width="117" />
+                           HorizontalContentAlignment="Center"
+                           
+                           Width="88" />
                     <Label x:Name="mementoLabel1"
                            Content="Geen Memento"
                            HorizontalAlignment="Left"
                            Margin="263,37,0,0"
                            VerticalAlignment="Top"
                            Width="104" />
-                    <Button Content="Start Stopwatch"
-                            HorizontalAlignment="Left"
-                            Margin="35,161,0,0"
-                            VerticalAlignment="Top"
-                            Width="106"
-                            Click="Start_Stopwatch" />
-                    <Button Content="Stop Stopwatch"
+                    <Button Content="Start / Stop"
                             HorizontalAlignment="Left"
                             Margin="35,203,0,0"
                             VerticalAlignment="Top"
                             Width="106"
-                            Click="Stop_Stopwatch" />
+                            Click="Start_Stopwatch" />
                     <Button Content="Save Time"
                             HorizontalAlignment="Left"
-                            Margin="236,203,0,0"
+                            Margin="263,203,0,0"
                             VerticalAlignment="Top"
                             Width="75"
                             Click="Save_Time" />
                     <Label x:Name="mementoLabel2"
-                    	Content="Geen Memento"
-                    	HorizontalAlignment="Left"
-                    	Margin="263,68,0,0"
-                    	VerticalAlignment="Top"
-                    	Width="104" />
+                           Content="Geen Memento"
+                           HorizontalAlignment="Left"
+                           Margin="263,68,0,0"
+                           VerticalAlignment="Top"
+                           Width="104" />
                     <Label x:Name="mementoLabel3"
-                    	Content="Geen Memento"
-                    	HorizontalAlignment="Left"
-                    	Margin="263,94,0,0"
-                    	VerticalAlignment="Top"
-                    	Width="104" />
+                           Content="Geen Memento"
+                           HorizontalAlignment="Left"
+                           Margin="263,94,0,0"
+                           VerticalAlignment="Top"
+                           Width="104" />
                     <Label x:Name="mementoLabel4"
-                    	Content="Geen Memento"
-                    	HorizontalAlignment="Left"
-                    	Margin="263,120,0,0"
-                    	VerticalAlignment="Top"
-                    	Width="104" />
+                           Content="Geen Memento"
+                           HorizontalAlignment="Left"
+                           Margin="263,120,0,0"
+                           VerticalAlignment="Top"
+                           Width="104" />
                     <Label x:Name="mementoLabel5"
-                    	Content="Geen Memento"
-                    	HorizontalAlignment="Left"
-                    	Margin="263,151,0,0"
-                    	VerticalAlignment="Top"
-                    	Width="104" />
+                           Content="Geen Memento"
+                           HorizontalAlignment="Left"
+                           Margin="263,151,0,0"
+                           VerticalAlignment="Top"
+                           Width="104" />
                 </Grid>
             </TabItem>
 

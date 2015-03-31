@@ -139,8 +139,15 @@
   <ItemGroup>
     <Resource Include="Resources\minutes.jpg" />
     <Resource Include="Resources\seconds.jpg" />
-    <Resource Include="Resources\start_stop.jpg" />
     <Resource Include="Resources\timer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\start.jpg" />
+    <Resource Include="Resources\stop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clipboard.jpg" />
+    <Resource Include="Resources\stopwatch.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
