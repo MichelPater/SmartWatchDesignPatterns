@@ -7,6 +7,7 @@
 
     <Window.Resources>
         <FontFamily x:Key="DotMatrixFontFamily">/Resources/#Dot Matrix</FontFamily>
+        <FontFamily x:Key="AlarmClockFontFamily">/Resources/#alarm clock</FontFamily>
     </Window.Resources>
 
     <Grid>
@@ -25,7 +26,7 @@
                            FontWeight="Bold"
                            Foreground="Maroon"
                            HorizontalContentAlignment="Center"
-                           
+                           FontFamily="{StaticResource AlarmClockFontFamily}"
                            />
 
                     <TextBlock Name="MyWipedText"

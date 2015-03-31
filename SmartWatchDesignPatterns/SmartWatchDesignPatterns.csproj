@@ -111,6 +111,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\alarm clock.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\DOTMATRI.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
