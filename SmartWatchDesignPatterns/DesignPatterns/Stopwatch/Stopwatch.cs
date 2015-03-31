@@ -13,6 +13,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
         Originator o;
         CareTaker c;
         Memento m;
+        List<string> mementolist;
 
         public Stopwatch()
         {
@@ -23,6 +24,14 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
             c = new CareTaker();
 
             m = o.CreateMemento();
+
+            mementolist = new List<string>(5);
+
+            mementolist.Add("00:00:00");
+            mementolist.Add("00:00:00");
+            mementolist.Add("00:00:00");
+            mementolist.Add("00:00:00");
+            mementolist.Add("00:00:00");
             
         }
 
@@ -48,6 +57,18 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
         {
             get { return m;}
             set { m = value; }
+        }
+
+        public List<string> MementoList
+        {
+            get { return mementolist; }
+            set { mementolist = value; }
+        }
+
+        public string getMementoFromList(int number)
+        {
+
+            return mementolist.ElementAt<string>(number);
         }
     }
 }

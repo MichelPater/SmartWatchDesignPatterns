@@ -26,15 +26,13 @@ namespace SmartWatchDesignPatterns
         private DesignPatterns.Stopwatch.Stopwatch _stopWatch = new TimeCreator().CreateStopwatch();
         private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
         private System.Timers.Timer _stopwatchTimer = new System.Timers.Timer(50);
+        private System.Timers.Timer _timerTimer = new System.Timers.Timer(1000);
 
         private TimeSpan ts = new TimeSpan();
        
 
         //Benodigd voor StatePattern color verandering
         BrushConverter conv = new BrushConverter();
-
-        //DispatcherTimer benodigdheden
-        private DispatcherTimer Ttimer;
 
         public MainWindow()
         {
@@ -46,16 +44,12 @@ namespace SmartWatchDesignPatterns
 
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
-
-            //Constructor voor DispatcherTimer Timer
-            Ttimer = new DispatcherTimer();
-            Ttimer.Interval = new TimeSpan(0, 0, 1);
-            Ttimer.Tick += Timer_Tick;
-
             _clockTimer.Elapsed += ClockTimerElapsedEvent;
             _clockTimer.Start();
 
             _stopwatchTimer.Elapsed += StopWatchTimerEvent;
+
+            _timerTimer.Elapsed += Timer_Tick;
         }
 
         #region Timerbuttons
@@ -73,52 +67,25 @@ namespace SmartWatchDesignPatterns
         private void Start_Timer(object sender, RoutedEventArgs e)
         {
             t.Context.ChangeState();
-            Ttimer.Start();
+            _timerTimer.Start();
            //changeColorGrid();
         }
 
         private void Pauze_Timer(object sender, RoutedEventArgs e)
         {
             t.Context.ChangeState();
-            Ttimer.Stop();
+            _timerTimer.Stop();
             //changeColorGrid();
         }
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
         {
-            Ttimer.Stop();
+            _timerTimer.Stop();
             MinuteLabel.Content = "";
             SecondLabel.Content = "";
             t.Context.ChangeStateDefault();
         }
         #endregion
-
-        //DispatcherTimer Timer Tick Methodes
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (t.Minute == 0 && t.Second == 0)
-            {
-                Ttimer.Stop();
-                t.Context.ChangeStateAlarm();
-            }
-            else
-            {
-
-                if (t.Second >= 1)
-                {
-                    --t.Second;
-                }
-                else
-                {
-                    t.Second = 59;
-                    --t.Minute;
-                }
-                MinuteLabel.Content = t.Minute;
-                SecondLabel.Content = t.Second;
-            }
-
-        }
-
 
         private void Start_Stopwatch(object sender, RoutedEventArgs e)
         {
@@ -140,9 +107,23 @@ namespace SmartWatchDesignPatterns
 
             _stopWatch.Originator.savedTime = elapsedTime;
             _stopWatch.Memento = _stopWatch.Originator.CreateMemento();
+            _stopWatch.MementoList.RemoveAt(_stopWatch.MementoList.Count-1);
+            _stopWatch.MementoList.Add(_stopWatch.Memento.savedTime);
 
-            mementoLabel.Content = _stopWatch.Originator.savedTime;
+            UpdateMementoList();
         }
+
+        private void UpdateMementoList()
+        {
+
+            mementoLabel1.Content = _stopWatch.getMementoFromList(0);
+            mementoLabel2.Content = _stopWatch.getMementoFromList(1);
+            mementoLabel3.Content = _stopWatch.getMementoFromList(2);
+            mementoLabel4.Content = _stopWatch.getMementoFromList(3);
+            mementoLabel5.Content = _stopWatch.getMementoFromList(4);
+            
+        }
+
         private void changeColorGrid()
         {
             
@@ -208,6 +189,36 @@ namespace SmartWatchDesignPatterns
                     string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
                    swLabel.Content = elapsedTime;
+
+                   Console.WriteLine(_stopWatch.MementoList.Count);
+
+                }));
+        }
+
+        private void Timer_Tick(object sender, ElapsedEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(delegate()
+                {
+                    if (t.Minute == 0 && t.Second == 0)
+                    {
+                        _timerTimer.Stop();
+                        t.Context.ChangeStateAlarm();
+                    }
+                    else
+                    {
+
+                        if (t.Second >= 1)
+                        {
+                            --t.Second;
+                        }
+                        else
+                        {
+                            t.Second = 59;
+                            --t.Minute;
+                        }
+                        MinuteLabel.Content = t.Minute;
+                        SecondLabel.Content = t.Second;
+                    }
                 }));
         }
 
