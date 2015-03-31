@@ -4,6 +4,7 @@
         Title="MainWindow"
         Height="350"
         Width="525">
+    
     <Grid>
         <TabControl HorizontalAlignment="Left"
                     Height="299"
@@ -25,6 +26,9 @@
                                FontSize="48"
                                FontWeight="Bold"
                                Foreground="Maroon">
+                        
+                        
+                        
 Temporary Text
 
   <!-- Animates the text block's width. -->
@@ -32,17 +36,27 @@ Temporary Text
                             <EventTrigger RoutedEvent="TextBlock.Loaded">
                                 <BeginStoryboard>
                                     <Storyboard Name="FadeOutStoryboard">
-                                        <DoubleAnimation
-                                            x:Name="FadeOutAnimation"
-                                                        Storyboard.TargetProperty="Width"
+                                        
+                                        <DoubleAnimation x:Name="FadeInAnimation"
+                                                         Storyboard.TargetProperty="Width"
                                                          From="0"
                                                          To="480"
+                                                         Duration="0:0:1"
+                                                         FillBehavior="HoldEnd" />
+                                        <DoubleAnimation x:Name="FadeOutAnimation"
+                                                         Storyboard.TargetProperty="Width"
+                                                         From="480"
+                                                         To="0"
                                                          Duration="0:0:1"
                                                          FillBehavior="HoldEnd" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                         </TextBlock.Triggers>
+                        
+                        
+                        
+                        
                     </TextBlock>
                     <Button Content="Next"
                             Name="NextButton"

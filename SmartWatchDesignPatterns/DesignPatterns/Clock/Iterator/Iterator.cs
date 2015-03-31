@@ -83,7 +83,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         //Get wheter iteration is at begin
          public bool IsAtBegin
          {
-             get { return _current <= 0; }
+             get { return _current < 0; }
          }
     }
 }

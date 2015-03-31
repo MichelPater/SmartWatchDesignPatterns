@@ -29,6 +29,7 @@ namespace SmartWatchDesignPatterns
         private swdp.Timer.Timer t;
         private Iterator iterator;
         private Post post;
+        private Storyboard storyboard = new Storyboard();
 
         //DispatcherTimer benodigdheden
         private DispatcherTimer Ttimer;
@@ -115,6 +116,7 @@ namespace SmartWatchDesignPatterns
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
+            
             if (!iterator.IsAtEnd)
             {
                 Post _tempPost = iterator.Next();
@@ -124,11 +126,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
-
-            Storyboard storyboard = new Storyboard();
-            storyboard.Children.Add(FadeOutAnimation);
-            storyboard.Begin(MyWipedText);
-
+            StartFadeInAnimation();
         }
 
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
@@ -142,7 +140,16 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = post.Title;
-            
+            StartFadeInAnimation();
+
         }
-    }
+
+
+        private void StartFadeInAnimation()
+        {
+            storyboard.Stop();
+            storyboard.Children.Add(FadeInAnimation);
+            storyboard.Begin(MyWipedText);
+        }
+        }
 }
