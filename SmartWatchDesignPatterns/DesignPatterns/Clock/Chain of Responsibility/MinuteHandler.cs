@@ -11,13 +11,13 @@
 
         public override void Tick()
         {
-            if (_minute <= 59)
+            if (_minute < 59)
             {
                 _minute++;
             }
             else if (succesor != null)
             {
-                Tick();
+                succesor.Tick();
                 _minute = 0;
             }
         }

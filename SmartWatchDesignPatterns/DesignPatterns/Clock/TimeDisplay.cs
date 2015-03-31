@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.AccessControl;
 using System.Timers;
 using SmartWatchDesignPatterns.DesignPatterns.Clock.Chain_of_Responsibility;
 
@@ -10,6 +11,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
         private MinuteHandler _minuteHandler = new MinuteHandler();
         private HourHandler _hourHandler = new HourHandler();
         private System.Timers.Timer _timer = new System.Timers.Timer(1000);
+        private System.Timers.Timer _guiTimer = new System.Timers.Timer(500);
 
         public TimeDisplay()
         {
@@ -17,10 +19,10 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
             _minuteHandler.SetSuccesor(_hourHandler);
 
             _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            _timer.Enabled = true;
 
-            _timer.Interval = 1000;
-            _timer.Enabled = true; 
-
+            _guiTimer.Elapsed += new ElapsedEventHandler(GUIUpdateEvent);
+            _guiTimer.Enabled = true;
             InitializeTime();
         }
 
@@ -43,7 +45,12 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             _secondHandler.Tick();
-            Console.WriteLine(GetTime().ToString());
+        }
+
+        private void GUIUpdateEvent(object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine("1" + GetTime().ToString());
+            Console.WriteLine("2" + DateTime.Now.ToString());
         }
     }
 }

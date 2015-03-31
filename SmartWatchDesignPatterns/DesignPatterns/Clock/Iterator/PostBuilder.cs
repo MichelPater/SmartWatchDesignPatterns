@@ -4,7 +4,7 @@ using System.Linq;
 using RedditSharp;
 using RedditSharp.Things;
 
-namespace SmartWatchDesignPatterns.RedditAPI
+namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
 {
     internal class PostBuilder
     {
