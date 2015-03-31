@@ -153,6 +153,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = _clock.Post.Title;
+            MyWipedText.ToolTip = _clock.Post.Title;
             StartFadeInAnimation();
         }
 
@@ -167,6 +168,7 @@ namespace SmartWatchDesignPatterns
                 }
             }
             MyWipedText.Text = _clock.Post.Title;
+            MyWipedText.ToolTip = _clock.Post.Title;
             StartFadeInAnimation();
         }
         

@@ -23,13 +23,16 @@
 
                     <TextBlock Name="MyWipedText"
                                Margin="11,196,9,10"
-                               FontSize="48"
+                               FontSize="25"
                                FontWeight="Bold"
-                               Foreground="Maroon">
+                               Foreground="Maroon"
+                               TextWrapping="Wrap"
+                               Text="Temporary Text"
+                               TextTrimming="CharacterEllipsis">
                         
                         
                         
-Temporary Text
+
 
   <!-- Animates the text block's width. -->
                         <TextBlock.Triggers>
