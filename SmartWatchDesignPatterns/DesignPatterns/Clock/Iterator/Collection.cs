@@ -12,7 +12,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     /// </summary>
     class Collection : IAbstractCollection
     {
-        private ArrayList _items = new ArrayList();
+        private ArrayList _posts = new ArrayList();
 
         public Iterator CreateIterator()
         {
@@ -22,14 +22,14 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         // Gets item count
         public int Count
         {
-            get { return _items.Count; }
+            get { return _posts.Count; }
         }
 
         // Indexer
         public object this[int index]
         {
-            get { return _items[index]; }
-            set { _items.Add(value); }
+            get { return _posts[index]; }
+            set { _posts.Add(value); }
         }
     }
 }
