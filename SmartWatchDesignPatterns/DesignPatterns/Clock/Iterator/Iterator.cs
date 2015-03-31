@@ -27,6 +27,13 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
             _current = 0;
             return _collection[_current] as Post;
         }
+
+         public Post Last()
+         {
+             _current = _collection.Count - 1;
+             return _collection[_current] as Post;
+         }
+
  
         // Gets next item
         public Post Next()

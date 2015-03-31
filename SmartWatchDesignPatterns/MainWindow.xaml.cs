@@ -37,7 +37,7 @@ namespace SmartWatchDesignPatterns
             timeLabel.Content = datetime.Hour + ":" + datetime.Minute;
 
             // SmartWatchDesignPatterns.DesignPatterns.Clock.TimeDisplay _timeDisplay = new TimeDisplay();
-            CreatePost();
+            //CreatePost();
         }
 
         private void Set_Timer(object sender, RoutedEventArgs e)
@@ -69,8 +69,6 @@ namespace SmartWatchDesignPatterns
 
         }
 
-
-
         private void CreatePost()
         {
             PostBuilder postBuilder = new PostBuilder("r/ProgrammerHumor");
@@ -79,6 +77,11 @@ namespace SmartWatchDesignPatterns
             Iterator iterator = new Iterator(posts);
 
             for (Post post = iterator.First(); !iterator.IsAtEnd; post = iterator.Next())
+            {
+                Console.WriteLine(post.Title);
+            }
+            Console.WriteLine("_____________________________________");
+            for (Post post = iterator.Last(); !iterator.IsAtBegin; post = iterator.Previous())
             {
                 Console.WriteLine(post.Title);
             }
