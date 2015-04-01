@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RedditSharp.Things;
+﻿using RedditSharp.Things;
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
 {
@@ -16,14 +11,13 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         public int CurrentIndex
         {
             get { return _current; }
-            private set { _current = value; }
         }
-        private int _current = 0;
+        private int _current;
         private int _step = 1;
 
         public Iterator(Collection collection)
         {
-            this._collection = collection;
+            _collection = collection;
         }
 
         // Gets first item
@@ -49,10 +43,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
                 _current += _step;
                 return _collection[_current] as Post;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         //Gets previous item
@@ -63,10 +54,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
                 _current -= _step;
                 return _collection[_current] as Post;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         // Gets or sets stepsize

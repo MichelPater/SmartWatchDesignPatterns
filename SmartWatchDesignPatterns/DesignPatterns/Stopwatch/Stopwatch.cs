@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using wStopwatch = System.Diagnostics.Stopwatch;
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
@@ -68,7 +65,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
         public string getMementoFromQueue(int number)
         {
 
-            return mementoqueue.ElementAt<string>(number);
+            return mementoqueue.ElementAt(number);
         }
     }
 }

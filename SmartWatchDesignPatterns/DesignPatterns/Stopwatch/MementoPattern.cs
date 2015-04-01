@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
+﻿namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 {
     class MementoPattern
     {
@@ -38,7 +32,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 
         public Memento(string savedTime)
         {
-            this._savedTime = savedTime;
+            _savedTime = savedTime;
         }
 
         public string savedTime

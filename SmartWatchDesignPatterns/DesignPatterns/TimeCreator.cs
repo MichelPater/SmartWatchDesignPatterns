@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SmartWatchDesignPatterns.DesignPatterns
+﻿namespace SmartWatchDesignPatterns.DesignPatterns
 {
     class TimeCreator
     {

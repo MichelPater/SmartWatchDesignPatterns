@@ -10,7 +10,6 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     {
         private readonly Reddit _reddit = new Reddit();
         private readonly Subreddit _subreddit;
-        private String _subredditName;
         private int _amountOfPosts = 20;
 
         /// <summary>
@@ -18,33 +17,11 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         /// </summary>
         public PostBuilder()
         {
-            _subredditName = "r/All";
+            SubredditName = "r/All";
            _subreddit = Subreddit.GetRSlashAll(_reddit);
         }
-
-        /// <summary>
-        ///     Constructor with changeable subredditname
-        /// </summary>
-        /// <param name="subbredditName"></param>
-        public PostBuilder(String subredditName) 
-        {
-    
-                _subredditName = subredditName;
-                _subreddit = _reddit.GetSubreddit(_subredditName);
         
-        }
-
-        public String SubredditName
-        {
-            get { return _subredditName; }
-            set { _subredditName = value; }
-        }
-
-        public int AmountOfPosts
-        {
-            get { return _amountOfPosts; }
-            set { _amountOfPosts = value; }
-        }
+        public String SubredditName { get; set; }
 
         /// <summary>
         ///     Gets a list of posts from a defined subreddit
@@ -57,14 +34,14 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
             {
                 posts.Add(post);
             }
-            Collection _postCollection = new Collection();
+            Collection postCollection = new Collection();
 
             for (int i = 0; i < posts.Count; i++)
             {
-                _postCollection[i] = posts[i];
+                postCollection[i] = posts[i];
             }
 
-            return _postCollection;
+            return postCollection;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
@@ -6,8 +7,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using RedditSharp.Things;
 using SmartWatchDesignPatterns.DesignPatterns;
-using SmartWatchDesignPatterns.DesignPatterns.Stopwatch;
 using Clock = SmartWatchDesignPatterns.DesignPatterns.Clock.Clock;
+using Stopwatch = SmartWatchDesignPatterns.DesignPatterns.Stopwatch.Stopwatch;
 using Timer = SmartWatchDesignPatterns.DesignPatterns.Timer.Timer;
 
 namespace SmartWatchDesignPatterns
@@ -25,7 +26,7 @@ namespace SmartWatchDesignPatterns
         private readonly System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
         private readonly System.Timers.Timer _stopwatchTimer = new System.Timers.Timer(1);
         private readonly System.Timers.Timer _timerTimer = new System.Timers.Timer(1000);
-        private TimeSpan _ts = new TimeSpan();
+        private TimeSpan _ts;
         private bool _isTimerRunning, _isStopwatchRunning;
         private int _minutes, _seconds;
 
@@ -185,27 +186,26 @@ namespace SmartWatchDesignPatterns
         #region TimerTickEvents
         private void ClockTimerElapsedEvent(object sender, ElapsedEventArgs e)
         {
-            Dispatcher.Invoke(new Action(delegate()
-            {
-                timeLabel.Content = _clock.GetStringFormattedTime();
-            }));
+            Dispatcher.Invoke(delegate {
+                                           timeLabel.Content = _clock.GetStringFormattedTime();
+            });
         }
 
         private void StopWatchTimerEvent(object sender, ElapsedEventArgs e)
         {
-            Dispatcher.Invoke(new Action(delegate()
-                {
-                    _ts = _stopWatch.wStopwatch.Elapsed;
+            Dispatcher.Invoke(delegate
+            {
+                _ts = _stopWatch.wStopwatch.Elapsed;
 
-                    string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", _ts.Hours, _ts.Minutes, _ts.Seconds, _ts.Milliseconds / 10);
+                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", _ts.Hours, _ts.Minutes, _ts.Seconds, _ts.Milliseconds / 10);
 
-                    swLabel.Content = elapsedTime;
-                }));
+                swLabel.Content = elapsedTime;
+            });
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Dispatcher.Invoke(new Action(delegate()
+            Dispatcher.Invoke(delegate
             {
 
                 if (_timer.Minute == 0 && _timer.Second == 0)
@@ -228,7 +228,7 @@ namespace SmartWatchDesignPatterns
                     MinuteLabel.Content = _timer.Minute;
                     SecondLabel.Content = _timer.Second;
                 }
-            }));
+            });
         }
 
         #endregion
@@ -275,7 +275,7 @@ namespace SmartWatchDesignPatterns
 
                 
             {
-                System.Diagnostics.Process.Start("www.reddit.com"+ _clock.Iterator.CurrentItem.Permalink.OriginalString);
+                Process.Start("www.reddit.com"+ _clock.Iterator.CurrentItem.Permalink.OriginalString);
             }
             catch { }
         }
