@@ -59,10 +59,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DesignPatterns\Clock\Clock.cs" />
-    <Compile Include="DesignPatterns\Clock\Chain of Responsibility\HourHandler.cs" />
-    <Compile Include="DesignPatterns\Clock\Chain of Responsibility\MinuteHandler.cs" />
-    <Compile Include="DesignPatterns\Clock\Chain of Responsibility\SecondHandler.cs" />
-    <Compile Include="DesignPatterns\Clock\Chain of Responsibility\TimeHandler.cs" />
     <Compile Include="DesignPatterns\Clock\Iterator\Collection.cs" />
     <Compile Include="DesignPatterns\Clock\Iterator\IAbstractCollection.cs" />
     <Compile Include="DesignPatterns\Clock\Iterator\IAbstractIterator.cs" />
