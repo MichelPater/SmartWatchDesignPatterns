@@ -1,9 +1,9 @@
 ﻿namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
 {
     /// <summary>
-    /// The 'Aggregate' interface
+    ///     The 'Aggregate' interface
     /// </summary>
-    interface IAbstractCollection
+    internal interface IAbstractCollection
     {
         Iterator CreateIterator();
     }

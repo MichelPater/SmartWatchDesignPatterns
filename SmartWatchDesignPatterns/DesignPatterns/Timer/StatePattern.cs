@@ -2,13 +2,14 @@
 {
     public class StatePattern
     {
-        //Context c = new Context(new DefaultState());        
+        
     }
-        abstract class State
-        {
-            public abstract void StateUpdate(Context context);
-            public abstract void StateUpdate(Context context, string status);
-        }
+
+    internal abstract class State
+    {
+        public abstract void StateUpdate(Context context);
+        public abstract void StateUpdate(Context context, string status);
+    }
 
     /*Alle states die worden gebruikt
         * Default voor de start waarbij de tijd wordt opgegeven
@@ -16,9 +17,9 @@
         * Running voor lopend
         * Pauze voor pauze
         */
-    class DefaultState : State
-    {
 
+    internal class DefaultState : State
+    {
         public override void StateUpdate(Context context)
         {
             context.State = new RunningState();
@@ -26,7 +27,7 @@
             context.StateName = "Running";
         }
 
-         public override void StateUpdate(Context context, string status)
+        public override void StateUpdate(Context context, string status)
         {
             switch (status)
             {
@@ -43,10 +44,11 @@
             }
         }
     }
-    class RunningState : State
+
+    internal class RunningState : State
     {
         /// <summary>
-        /// Update the state from a context
+        ///     Update the state from a context
         /// </summary>
         /// <param name="context"></param>
         public override void StateUpdate(Context context)
@@ -55,14 +57,16 @@
             context.Color = "pink";
             context.StateName = "Running";
         }
+
         /// <summary>
-        /// Overload for Stateupdate, with added status string
+        ///     Overload for Stateupdate, with added status string
         /// </summary>
         /// <param name="context"></param>
         /// <param name="status"></param>
         public override void StateUpdate(Context context, string status)
         {
-            switch(status){
+            switch (status)
+            {
                 case "alarm":
                     context.State = new AlarmState();
                     context.Color = "red";
@@ -76,10 +80,11 @@
             }
         }
     }
-    class AlarmState : State
+
+    internal class AlarmState : State
     {
         /// <summary>
-        /// Update the state from a context
+        ///     Update the state from a context
         /// </summary>
         /// <param name="context"></param>
         public override void StateUpdate(Context context)
@@ -88,14 +93,16 @@
             context.Color = "lightblue";
             context.StateName = "Default";
         }
+
         /// <summary>
-        /// Overload for Stateupdate, with added status string
+        ///     Overload for Stateupdate, with added status string
         /// </summary>
         /// <param name="context"></param>
         /// <param name="status"></param>
         public override void StateUpdate(Context context, string status)
         {
-            switch(status){
+            switch (status)
+            {
                 case "alarm":
                     context.State = new AlarmState();
                     context.Color = "red";
@@ -110,10 +117,10 @@
         }
     }
 
-    class PauzeState : State
+    internal class PauzeState : State
     {
         /// <summary>
-        /// Update the state from a context
+        ///     Update the state from a context
         /// </summary>
         /// <param name="context"></param>
         public override void StateUpdate(Context context)
@@ -122,14 +129,16 @@
             context.Color = "green";
             context.StateName = "Running";
         }
+
         /// <summary>
-        /// Overload for Stateupdate, with added status string
+        ///     Overload for Stateupdate, with added status string
         /// </summary>
         /// <param name="context"></param>
         /// <param name="status"></param>
         public override void StateUpdate(Context context, string status)
         {
-            switch(status){
+            switch (status)
+            {
                 case "alarm":
                     context.State = new AlarmState();
                     context.Color = "red";
@@ -141,45 +150,35 @@
                     context.StateName = "Default";
                     break;
             }
-         }
+        }
     }
 
-    class Context
+    internal class Context
     {
-        private State _state;
-
         public Context(State state)
         {
-            _state = state;
+            State = state;
             Color = "lightblue";
             StateName = "Default";
         }
 
-        public State State
-        {
-            get { return _state; }
-            set { _state = value; }
-
-        }
-
+        public State State { get; set; }
         public string Color { get; set; }
-
         public string StateName { get; set; }
 
         public void ChangeState()
         {
-            _state.StateUpdate(this);
+            State.StateUpdate(this);
         }
 
         public void ChangeStateAlarm()
         {
-            _state.StateUpdate(this, "alarm");
+            State.StateUpdate(this, "alarm");
         }
 
         public void ChangeStateDefault()
         {
-            _state.StateUpdate(this, "default");
+            State.StateUpdate(this, "default");
         }
     }
 }
-

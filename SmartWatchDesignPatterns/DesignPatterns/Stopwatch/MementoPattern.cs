@@ -1,23 +1,17 @@
 ﻿namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 {
-    class MementoPattern
+    internal class MementoPattern
     {
     }
 
-    class Originator
+    internal class Originator
     {
-        private string _savedTime;
-
         //The savedStopwatch time
-        public string savedTime
-        {
-            get { return _savedTime; }
-            set { _savedTime = value; }
-        }
+        public string savedTime { get; set; }
 
         public Memento CreateMemento()
         {
-            return (new Memento(_savedTime));
+            return (new Memento(savedTime));
         }
 
         public void SetMemento(Memento memento)
@@ -26,12 +20,12 @@
         }
     }
 
-    class Memento
+    internal class Memento
     {
         private readonly string _savedTime;
 
         /// <summary>
-        /// Create a memento form a savedtime
+        ///     Create a memento form a savedtime
         /// </summary>
         /// <param name="savedTime"></param>
         public Memento(string savedTime)
@@ -45,7 +39,7 @@
         }
     }
 
-    class CareTaker
+    internal class CareTaker
     {
         public Memento Memento { get; set; }
     }

@@ -3,9 +3,9 @@
 namespace SmartWatchDesignPatterns.DesignPatterns
 {
     /// <summary>
-    /// The interface for Factory Method Objects
+    ///     The interface for Factory Method Objects
     /// </summary>
-    interface ITime
+    internal interface ITime
     {
         String getTitle();
     }

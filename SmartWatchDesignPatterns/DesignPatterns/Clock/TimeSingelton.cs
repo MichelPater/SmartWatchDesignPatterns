@@ -2,20 +2,19 @@
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 {
-    class TimeSingelton
+    internal class TimeSingelton
     {
+        private static readonly TimeSingelton Instance = new TimeSingelton();
+
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
-        TimeSingelton()
+        private TimeSingelton()
         {
-            
         }
 
-        static readonly TimeSingelton Instance = new TimeSingelton();
-
         /// <summary>
-        /// Create a uniqueinstance of the singelton
+        ///     Create a uniqueinstance of the singelton
         /// </summary>
         public static TimeSingelton UniqueInstance
         {
@@ -23,7 +22,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
         }
 
         /// <summary>
-        /// Get the Current DateTime
+        ///     Get the Current DateTime
         /// </summary>
         /// <returns></returns>
         public DateTime GetTime()

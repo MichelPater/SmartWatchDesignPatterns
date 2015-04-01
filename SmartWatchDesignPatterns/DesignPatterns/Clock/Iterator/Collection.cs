@@ -3,17 +3,11 @@
 namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
 {
     /// <summary>
-    /// The 'ConcreteAggregate' class
+    ///     The 'ConcreteAggregate' class
     /// </summary>
     public class Collection : IAbstractCollection
     {
         private readonly ArrayList _posts = new ArrayList();
-
-        public Iterator CreateIterator()
-        {
-            return new Iterator(this);
-        }
-
         // Gets item count
         public int Count
         {
@@ -25,6 +19,11 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         {
             get { return _posts[index]; }
             set { _posts.Add(value); }
+        }
+
+        public Iterator CreateIterator()
+        {
+            return new Iterator(this);
         }
     }
 }
