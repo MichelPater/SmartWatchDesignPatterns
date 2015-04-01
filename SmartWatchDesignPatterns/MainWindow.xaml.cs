@@ -15,7 +15,7 @@ namespace SmartWatchDesignPatterns
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private readonly Clock _clock = new TimeCreator().CreateClock();
         private readonly System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
@@ -25,7 +25,7 @@ namespace SmartWatchDesignPatterns
         private readonly TimeCreator _timec = new TimeCreator();
         private readonly System.Timers.Timer _timerTimer = new System.Timers.Timer(1000);
         //Benodigd voor StatePattern color verandering
-        private BrushConverter _conv = new BrushConverter();
+        //private BrushConverter _conv = new BrushConverter();
         private bool _isTimerRunning, _isStopwatchRunning;
         private int _minutes, _seconds;
         private Timer _timer;
@@ -35,12 +35,7 @@ namespace SmartWatchDesignPatterns
         {
             InitializeComponent();
 
-            TimeLabel.Content = "00:00";
-
-            var datetime = DateTime.Now;
-
-            TimeLabel.Content = datetime.Hour + ":" + datetime.Minute;
-
+            //init timers
             _clockTimer.Elapsed += ClockTimerElapsedEvent;
             _clockTimer.Start();
 
@@ -48,17 +43,25 @@ namespace SmartWatchDesignPatterns
 
             _timerTimer.Elapsed += Timer_Tick;
 
+            //Init MementoLabel
             UpdateMementoLabel();
         }
 
+        /// <summary>
+        /// Start / pause the stopwatch class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Start_Stopwatch(object sender, RoutedEventArgs e)
         {
+            //Stopwatch is paused so start it
             if (_isStopwatchRunning == false)
             {
                 _isStopwatchRunning = true;
                 _stopWatch.WStopwatch.Start();
                 _stopwatchTimer.Start();
             }
+            //Stopwatch is running so pause it
             else
             {
                 _isStopwatchRunning = false;
@@ -67,6 +70,11 @@ namespace SmartWatchDesignPatterns
             }
         }
 
+        /// <summary>
+        /// Save the time from the stopwatch
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Save_Time(object sender, RoutedEventArgs e)
         {
             _stopWatch.Originator.savedTime = SwLabel.Content.ToString();
@@ -77,6 +85,9 @@ namespace SmartWatchDesignPatterns
             UpdateMementoLabel();
         }
 
+        /// <summary>
+        /// Update the MementoLabel to the correct data
+        /// </summary>
         private void UpdateMementoLabel()
         {
             MementoLabel1.Content = _stopWatch.GetMementoFromQueue(0);
@@ -96,11 +107,18 @@ namespace SmartWatchDesignPatterns
             SecondLabel.Content = timer.Second;
         }*/
 
+        /// <summary>
+        /// Get the next Reddit post
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
+            //itterator is not at end
             if (!_clock.Iterator.IsAtEnd)
             {
                 var tempPost = _clock.Iterator.Next();
+                //post is not null
                 if (tempPost != null)
                 {
                     _clock.Post = tempPost;
@@ -111,11 +129,18 @@ namespace SmartWatchDesignPatterns
             StartFadeInAnimation();
         }
 
+        /// <summary>
+        /// Get the previous Reddit Post
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
+            //itterator is not at end
             if (!_clock.Iterator.IsAtBegin)
             {
                 var tempPost = _clock.Iterator.Previous();
+                //post is not null
                 if (tempPost != null)
                 {
                     _clock.Post = tempPost;
@@ -125,6 +150,9 @@ namespace SmartWatchDesignPatterns
             StartFadeInAnimation();
         }
 
+        /// <summary>
+        /// Start the TextBox Fade In Animation
+        /// </summary>
         private void StartFadeInAnimation()
         {
             _storyboard.Stop();
@@ -132,13 +160,12 @@ namespace SmartWatchDesignPatterns
             _storyboard.Begin(MyWipedText);
         }
 
-        private void Image_KeyDown(object sender, KeyEventArgs e)
-        {
-            _clock.RefreshPosts();
-            SetWipedText();
-            StartFadeInAnimation();
-        }
 
+        /// <summary>
+        /// When the window is loaded set a post and begin animating
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SetWipedText();
@@ -154,31 +181,45 @@ namespace SmartWatchDesignPatterns
             MyWipedText.ToolTip = _clock.Post.Title;
         }
 
+        /// <summary>
+        /// Increment the minute counter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MinuteButton_Click(object sender, RoutedEventArgs e)
         {
-            _minutes += 1;
+            _minutes++;
             MinuteLabel.Content = _minutes;
         }
 
+        /// <summary>
+        /// Increment the second counter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SecondButton_Click(object sender, RoutedEventArgs e)
         {
             if (_seconds < 59)
             {
-                _seconds += 1;
+                _seconds++;
             }
             SecondLabel.Content = _seconds;
         }
 
+        /// <summary>
+        /// Try to open a url from a redditpost
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MyWipedText_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
-
-
             {
                 Process.Start("www.reddit.com" + _clock.Iterator.CurrentItem.Permalink.OriginalString);
             }
             catch
             {
+                // ignored
             }
         }
 
@@ -213,7 +254,11 @@ namespace SmartWatchDesignPatterns
             }
         }
 
-
+        /// <summary>
+        /// Undo / Clear the timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Undo_Timer(object sender, RoutedEventArgs e)
         {
             _minutes = 0;
@@ -231,12 +276,21 @@ namespace SmartWatchDesignPatterns
         #endregion
 
         #region TimerTickEvents
-
+        /// <summary>
+        /// Update the Clock gui
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClockTimerElapsedEvent(object sender, ElapsedEventArgs e)
         {
             Dispatcher.Invoke(delegate { TimeLabel.Content = _clock.GetStringFormattedTime(); });
         }
 
+        /// <summary>
+        /// Updates the Stopwatch gui Elements on Timer Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StopWatchTimerEvent(object sender, ElapsedEventArgs e)
         {
             Dispatcher.Invoke(delegate
@@ -244,12 +298,17 @@ namespace SmartWatchDesignPatterns
                 _ts = _stopWatch.WStopwatch.Elapsed;
 
                 var elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", _ts.Hours, _ts.Minutes, _ts.Seconds,
-                    _ts.Milliseconds/10);
+                    _ts.Milliseconds / 10);
 
                 SwLabel.Content = elapsedTime;
             });
         }
 
+        /// <summary>
+        /// Ticks the timer and updates the gui
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             Dispatcher.Invoke(delegate
@@ -277,5 +336,16 @@ namespace SmartWatchDesignPatterns
         }
 
         #endregion
+        /// <summary>
+        /// Refresh the RedditPosts
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            _clock.RefreshPosts();
+            SetWipedText();
+            StartFadeInAnimation();
+        }
     }
 }

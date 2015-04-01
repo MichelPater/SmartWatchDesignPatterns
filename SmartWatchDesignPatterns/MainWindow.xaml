@@ -148,10 +148,18 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Image Margin="452,169,-9,85"
-                           Source="Resources/refresh.jpg"
-                           RenderTransformOrigin="0.146,2.471"
-                           KeyDown="Image_KeyDown" />
+                    <Button BorderThickness="0"
+                            Background="Transparent"
+                            Name="Refresh"
+                            HorizontalAlignment="Left"
+                            Margin="463,173,0,0"
+                            VerticalAlignment="Top"
+                            Width="18"
+                            Height="18"
+                            Click="Refresh_Click">
+                        <Image Source="Resources/refresh.jpg" />
+
+                    </Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Timer">
@@ -186,14 +194,13 @@
                            Margin="241,56,0,0"
                            Width="120"
                            Height="75" />
-                    <Button
-                        BorderThickness="0"
-                        Background="Transparent"
-                        HorizontalAlignment="Left"
-                        Margin="252,158,0,0"
-                        VerticalAlignment="Top"
-                        Width="75"
-                        Click="Start_Timer">
+                    <Button BorderThickness="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Left"
+                            Margin="252,158,0,0"
+                            VerticalAlignment="Top"
+                            Width="75"
+                            Click="Start_Timer">
                         <Image Source="Resources/start.jpg" />
                     </Button>
 
@@ -249,7 +256,6 @@
                            Margin="53,60,0,0"
                            VerticalAlignment="Top"
                            HorizontalContentAlignment="Center"
-
                            Width="88" />
                     <Label x:Name="MementoLabel1"
                            Content="Geen Memento"
