@@ -21,8 +21,7 @@
                     Width="497">
 
 
-            <TabItem Header="Clock"
-                   >
+            <TabItem Header="Clock">
 
 
                 <Grid Background="White">
@@ -31,7 +30,7 @@
                            Stretch="Fill" />
 
 
-                    <Label x:Name="timeLabel"
+                    <Label x:Name="TimeLabel"
                            Content="00:00:00"
                            Margin="10,55,10,151"
                            FontSize="60"
@@ -54,8 +53,8 @@
                                TextTrimming="CharacterEllipsis"
                                FontFamily="{StaticResource DotMatrixFontFamily}"
                                MouseDown="MyWipedText_MouseDown">
-                        
-  <!-- Animates the text block's width. -->
+
+                        <!-- Animates the text block's width. -->
                         <TextBlock.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard>
@@ -155,9 +154,7 @@
                            KeyDown="Image_KeyDown" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Timer"
-                    
-                     >
+            <TabItem Header="Timer">
                 <Grid x:Name="MainGrid"
                       Background="White">
 
@@ -189,16 +186,15 @@
                            Margin="241,56,0,0"
                            Width="120"
                            Height="75" />
-                    <Button 
+                    <Button
                         BorderThickness="0"
-                            Background="Transparent"
+                        Background="Transparent"
                         HorizontalAlignment="Left"
-                            Margin="252,158,0,0"
-                            VerticalAlignment="Top"
-                            Width="75"
-                            Click="Start_Timer" >
-                        <Image Source="Resources/start.jpg"
-                              />
+                        Margin="252,158,0,0"
+                        VerticalAlignment="Top"
+                        Width="75"
+                        Click="Start_Timer">
+                        <Image Source="Resources/start.jpg" />
                     </Button>
 
 
@@ -208,11 +204,11 @@
                             Margin="348,158,0,0"
                             VerticalAlignment="Top"
                             Width="75"
-                            Click="Undo_Timer" >
+                            Click="Undo_Timer">
                         <Image Source="Resources/stop.jpg" />
                     </Button>
 
-              
+
                     <Button BorderThickness="0"
                             Name="MinuteButton"
                             HorizontalAlignment="Left"
@@ -243,20 +239,19 @@
                 <Grid Background="White">
 
                     <Image Margin="236,10,96,85"
-                           Source="Resources/clipboard.jpg"
-                            />
+                           Source="Resources/clipboard.jpg" />
                     <Image Margin="19,14,313,81"
                            Source="Resources/stopwatch.jpg" />
 
-                    <Label x:Name="swLabel"
+                    <Label x:Name="SwLabel"
                            Content="00:00:00:00"
                            HorizontalAlignment="Left"
                            Margin="53,60,0,0"
                            VerticalAlignment="Top"
                            HorizontalContentAlignment="Center"
-                           
+
                            Width="88" />
-                    <Label x:Name="mementoLabel1"
+                    <Label x:Name="MementoLabel1"
                            Content="Geen Memento"
                            HorizontalAlignment="Left"
                            Margin="263,37,0,0"
@@ -274,25 +269,25 @@
                             VerticalAlignment="Top"
                             Width="75"
                             Click="Save_Time" />
-                    <Label x:Name="mementoLabel2"
+                    <Label x:Name="MementoLabel2"
                            Content="Geen Memento"
                            HorizontalAlignment="Left"
                            Margin="263,68,0,0"
                            VerticalAlignment="Top"
                            Width="104" />
-                    <Label x:Name="mementoLabel3"
+                    <Label x:Name="MementoLabel3"
                            Content="Geen Memento"
                            HorizontalAlignment="Left"
                            Margin="263,94,0,0"
                            VerticalAlignment="Top"
                            Width="104" />
-                    <Label x:Name="mementoLabel4"
+                    <Label x:Name="MementoLabel4"
                            Content="Geen Memento"
                            HorizontalAlignment="Left"
                            Margin="263,120,0,0"
                            VerticalAlignment="Top"
                            Width="104" />
-                    <Label x:Name="mementoLabel5"
+                    <Label x:Name="MementoLabel5"
                            Content="Geen Memento"
                            HorizontalAlignment="Left"
                            Margin="263,151,0,0"
@@ -305,6 +300,3 @@
 
     </Grid>
 </Window>
-    
-    
- 
