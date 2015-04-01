@@ -22,7 +22,7 @@
 
 
             <TabItem Header="Clock"
-                     HorizontalAlignment="Center">
+                   >
 
 
                 <Grid Background="White">
@@ -52,7 +52,8 @@
                                TextWrapping="Wrap"
                                Text="Temporary Text"
                                TextTrimming="CharacterEllipsis"
-                               FontFamily="{StaticResource DotMatrixFontFamily}">
+                               FontFamily="{StaticResource DotMatrixFontFamily}"
+                               MouseDown="MyWipedText_MouseDown">
                         
   <!-- Animates the text block's width. -->
                         <TextBlock.Triggers>
@@ -155,9 +156,8 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Timer"
-                     Height="22"
-                     VerticalAlignment="Bottom"
-                     Margin="-2,-2,-2,2">
+                    
+                     >
                 <Grid x:Name="MainGrid"
                       Background="White">
 

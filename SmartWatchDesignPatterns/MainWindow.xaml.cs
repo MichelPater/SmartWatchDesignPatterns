@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Timers;
 using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Media.Animation;
-using System.Windows.Threading;
-using RedditSharp.Things;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
+using RedditSharp.Things;
 using SmartWatchDesignPatterns.DesignPatterns;
-
+using SmartWatchDesignPatterns.DesignPatterns.Stopwatch;
+using Clock = SmartWatchDesignPatterns.DesignPatterns.Clock.Clock;
+using Timer = SmartWatchDesignPatterns.DesignPatterns.Timer.Timer;
 
 namespace SmartWatchDesignPatterns
 {
@@ -16,23 +17,21 @@ namespace SmartWatchDesignPatterns
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DesignPatterns.Timer.Timer timer;
-        private Storyboard storyboard = new Storyboard();
-        private TimeCreator timec = new TimeCreator();
-        private DesignPatterns.Clock.Clock _clock = new TimeCreator().CreateClock();
-        private DesignPatterns.Stopwatch.Stopwatch _stopWatch = new TimeCreator().CreateStopwatch();
-        private System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
-        private System.Timers.Timer _stopwatchTimer = new System.Timers.Timer(50);
-        private System.Timers.Timer _timerTimer = new System.Timers.Timer(1000);
-        private TimeSpan ts = new TimeSpan();
-        private bool isTimerRunning = false;
-        private bool isStopwatchRunning = false;
-        private int minutes = 0;
-        private int seconds = 0;
+        private Timer _timer;
+        private readonly Storyboard _storyboard = new Storyboard();
+        private readonly TimeCreator _timec = new TimeCreator();
+        private Clock _clock = new TimeCreator().CreateClock();
+        private readonly Stopwatch _stopWatch = new TimeCreator().CreateStopwatch();
+        private readonly System.Timers.Timer _clockTimer = new System.Timers.Timer(500);
+        private readonly System.Timers.Timer _stopwatchTimer = new System.Timers.Timer(1);
+        private readonly System.Timers.Timer _timerTimer = new System.Timers.Timer(1000);
+        private TimeSpan _ts = new TimeSpan();
+        private bool _isTimerRunning, _isStopwatchRunning;
+        private int _minutes, _seconds;
 
 
         //Benodigd voor StatePattern color verandering
-        BrushConverter conv = new BrushConverter();
+        BrushConverter _conv = new BrushConverter();
 
         public MainWindow()
         {
@@ -60,26 +59,26 @@ namespace SmartWatchDesignPatterns
 
         private void Start_Timer(object sender, RoutedEventArgs e)
         {
-            if (isTimerRunning == false)
+            if (_isTimerRunning == false)
             {
-                isTimerRunning = true;
+                _isTimerRunning = true;
 
-                timer = timec.CreateTimer(minutes, seconds);
-                MinuteLabel.Content = timer.Minute;
-                SecondLabel.Content = timer.Second;
-                timer.Context.ChangeState();
+                _timer = _timec.CreateTimer(_minutes, _seconds);
+                MinuteLabel.Content = _timer.Minute;
+                SecondLabel.Content = _timer.Second;
+                _timer.Context.ChangeState();
                 _timerTimer.Start();
                 //changeColorGrid();
             }
 
             else
             {
-                isTimerRunning = false;
+                _isTimerRunning = false;
 
-                minutes = timer.Minute;
-                seconds = timer.Second;
+                _minutes = _timer.Minute;
+                _seconds = _timer.Second;
 
-                timer.Context.ChangeState();
+                _timer.Context.ChangeState();
                 _timerTimer.Stop();
                 //changeColorGrid();
             }
@@ -88,15 +87,15 @@ namespace SmartWatchDesignPatterns
 
         private void Undo_Timer(object sender, RoutedEventArgs e)
         {
-            minutes = 0;
-            seconds = 0;
+            _minutes = 0;
+            _seconds = 0;
             _timerTimer.Stop();
-            MinuteLabel.Content = minutes;
-            SecondLabel.Content = seconds;
+            MinuteLabel.Content = _minutes;
+            SecondLabel.Content = _seconds;
 
-            if (timer != null)
+            if (_timer != null)
             {
-                timer.Context.ChangeStateDefault();
+                _timer.Context.ChangeStateDefault();
             }
 
         }
@@ -104,13 +103,15 @@ namespace SmartWatchDesignPatterns
 
         private void Start_Stopwatch(object sender, RoutedEventArgs e)
         {
-            if (isStopwatchRunning == false)
+            if (_isStopwatchRunning == false)
             {
+                _isStopwatchRunning = true;
                 _stopWatch.wStopwatch.Start();
                 _stopwatchTimer.Start();
             }
             else
             {
+                _isStopwatchRunning = false;
                 _stopWatch.wStopwatch.Stop();
                 _stopwatchTimer.Stop();
             }
@@ -119,11 +120,7 @@ namespace SmartWatchDesignPatterns
        
         private void Save_Time(object sender, RoutedEventArgs e)
         {
-            ts = _stopWatch.wStopwatch.Elapsed;
-
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-
-            _stopWatch.Originator.savedTime = elapsedTime;
+            _stopWatch.Originator.savedTime = swLabel.Content.ToString();
             _stopWatch.Memento = _stopWatch.Originator.CreateMemento();
             _stopWatch.MementoList.Dequeue();
             _stopWatch.MementoList.Enqueue(_stopWatch.Memento.savedTime);
@@ -139,7 +136,7 @@ namespace SmartWatchDesignPatterns
             mementoLabel4.Content = _stopWatch.getMementoFromQueue(3);
             mementoLabel5.Content = _stopWatch.getMementoFromQueue(4);
         }
-
+        /*
         private void changeColorGrid()
         {
 
@@ -147,16 +144,16 @@ namespace SmartWatchDesignPatterns
             MainGrid.Background = brush;
             MinuteLabel.Content = timer.Minute;
             SecondLabel.Content = timer.Second;
-        }
+        }*/
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             if (!_clock.Iterator.IsAtEnd)
             {
-                Post _tempPost = _clock.Iterator.Next();
-                if (_tempPost != null)
+                Post tempPost = _clock.Iterator.Next();
+                if (tempPost != null)
                 {
-                    _clock.Post = _tempPost;
+                    _clock.Post = tempPost;
                 }
             }
             MyWipedText.Text = _clock.Post.Title;
@@ -168,10 +165,10 @@ namespace SmartWatchDesignPatterns
         {
             if (!_clock.Iterator.IsAtBegin)
             {
-                Post _tempPost = _clock.Iterator.Previous();
-                if (_tempPost != null)
+                Post tempPost = _clock.Iterator.Previous();
+                if (tempPost != null)
                 {
-                    _clock.Post = _tempPost;
+                    _clock.Post = tempPost;
                 }
             }
             SetWipedText();
@@ -180,9 +177,9 @@ namespace SmartWatchDesignPatterns
 
         private void StartFadeInAnimation()
         {
-            storyboard.Stop();
-            storyboard.Children.Add(FadeInAnimation);
-            storyboard.Begin(MyWipedText);
+            _storyboard.Stop();
+            _storyboard.Children.Add(FadeInAnimation);
+            _storyboard.Begin(MyWipedText);
         }
 
         #region TimerTickEvents
@@ -198,9 +195,9 @@ namespace SmartWatchDesignPatterns
         {
             Dispatcher.Invoke(new Action(delegate()
                 {
-                    ts = _stopWatch.wStopwatch.Elapsed;
+                    _ts = _stopWatch.wStopwatch.Elapsed;
 
-                    string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                    string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", _ts.Hours, _ts.Minutes, _ts.Seconds, _ts.Milliseconds / 10);
 
                     swLabel.Content = elapsedTime;
                 }));
@@ -211,31 +208,31 @@ namespace SmartWatchDesignPatterns
             Dispatcher.Invoke(new Action(delegate()
             {
 
-                if (timer.Minute == 0 && timer.Second == 0)
+                if (_timer.Minute == 0 && _timer.Second == 0)
                 {
                     _timerTimer.Stop();
-                    timer.Context.ChangeStateAlarm();
+                    _timer.Context.ChangeStateAlarm();
                 }
                 else
                 {
 
-                    if (timer.Second >= 1)
+                    if (_timer.Second >= 1)
                     {
-                        --timer.Second;
+                        --_timer.Second;
                     }
                     else
                     {
-                        timer.Second = 59;
-                        --timer.Minute;
+                        _timer.Second = 59;
+                        --_timer.Minute;
                     }
-                    MinuteLabel.Content = timer.Minute;
-                    SecondLabel.Content = timer.Second;
+                    MinuteLabel.Content = _timer.Minute;
+                    SecondLabel.Content = _timer.Second;
                 }
             }));
         }
 
         #endregion
-        private void Image_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Image_KeyDown(object sender, KeyEventArgs e)
         {
             _clock.RefreshPosts();
             SetWipedText();
@@ -259,17 +256,28 @@ namespace SmartWatchDesignPatterns
 
         private void MinuteButton_Click(object sender, RoutedEventArgs e)
         {
-            minutes += 1;
-            MinuteLabel.Content = minutes;
+            _minutes += 1;
+            MinuteLabel.Content = _minutes;
         }
 
         private void SecondButton_Click(object sender, RoutedEventArgs e)
         {
-            if (seconds < 59)
+            if (_seconds < 59)
             {
-                seconds += 1;
+                _seconds += 1;
             }
-            SecondLabel.Content = seconds;
+            SecondLabel.Content = _seconds;
+        }
+
+        private void MyWipedText_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+
+                
+            {
+                System.Diagnostics.Process.Start("www.reddit.com"+ _clock.Iterator.CurrentItem.Permalink.OriginalString);
+            }
+            catch { }
         }
 
 
