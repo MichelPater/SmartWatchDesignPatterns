@@ -7,7 +7,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     /// </summary>
     public class Iterator : IAbstractIterator
     {
-        private Collection _collection;
+        private readonly Collection _collection;
         public int CurrentIndex
         {
             get { return _current; }

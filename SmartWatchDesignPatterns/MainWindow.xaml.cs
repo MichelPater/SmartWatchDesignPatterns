@@ -107,13 +107,13 @@ namespace SmartWatchDesignPatterns
             if (_isStopwatchRunning == false)
             {
                 _isStopwatchRunning = true;
-                _stopWatch.wStopwatch.Start();
+                _stopWatch.WStopwatch.Start();
                 _stopwatchTimer.Start();
             }
             else
             {
                 _isStopwatchRunning = false;
-                _stopWatch.wStopwatch.Stop();
+                _stopWatch.WStopwatch.Stop();
                 _stopwatchTimer.Stop();
             }
         }
@@ -124,18 +124,18 @@ namespace SmartWatchDesignPatterns
             _stopWatch.Originator.savedTime = swLabel.Content.ToString();
             _stopWatch.Memento = _stopWatch.Originator.CreateMemento();
             _stopWatch.MementoList.Dequeue();
-            _stopWatch.MementoList.Enqueue(_stopWatch.Memento.savedTime);
+            _stopWatch.MementoList.Enqueue(_stopWatch.Memento.SavedTime);
 
             UpdateMementoLabel();
         }
 
         private void UpdateMementoLabel()
         {
-            mementoLabel1.Content = _stopWatch.getMementoFromQueue(0);
-            mementoLabel2.Content = _stopWatch.getMementoFromQueue(1);
-            mementoLabel3.Content = _stopWatch.getMementoFromQueue(2);
-            mementoLabel4.Content = _stopWatch.getMementoFromQueue(3);
-            mementoLabel5.Content = _stopWatch.getMementoFromQueue(4);
+            mementoLabel1.Content = _stopWatch.GetMementoFromQueue(0);
+            mementoLabel2.Content = _stopWatch.GetMementoFromQueue(1);
+            mementoLabel3.Content = _stopWatch.GetMementoFromQueue(2);
+            mementoLabel4.Content = _stopWatch.GetMementoFromQueue(3);
+            mementoLabel5.Content = _stopWatch.GetMementoFromQueue(4);
         }
         /*
         private void changeColorGrid()
@@ -195,7 +195,7 @@ namespace SmartWatchDesignPatterns
         {
             Dispatcher.Invoke(delegate
             {
-                _ts = _stopWatch.wStopwatch.Elapsed;
+                _ts = _stopWatch.WStopwatch.Elapsed;
 
                 string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:00}", _ts.Hours, _ts.Minutes, _ts.Seconds, _ts.Milliseconds / 10);
 

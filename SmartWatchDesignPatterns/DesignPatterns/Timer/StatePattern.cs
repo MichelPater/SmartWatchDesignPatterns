@@ -45,14 +45,21 @@
     }
     class RunningState : State
     {
-        
+        /// <summary>
+        /// Update the state from a context
+        /// </summary>
+        /// <param name="context"></param>
         public override void StateUpdate(Context context)
         {
             context.State = new PauzeState();
             context.Color = "pink";
             context.StateName = "Running";
         }
-
+        /// <summary>
+        /// Overload for Stateupdate, with added status string
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="status"></param>
         public override void StateUpdate(Context context, string status)
         {
             switch(status){
@@ -71,13 +78,21 @@
     }
     class AlarmState : State
     {
+        /// <summary>
+        /// Update the state from a context
+        /// </summary>
+        /// <param name="context"></param>
         public override void StateUpdate(Context context)
         {
             context.State = new DefaultState();
             context.Color = "lightblue";
             context.StateName = "Default";
         }
-
+        /// <summary>
+        /// Overload for Stateupdate, with added status string
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="status"></param>
         public override void StateUpdate(Context context, string status)
         {
             switch(status){
@@ -97,13 +112,21 @@
 
     class PauzeState : State
     {
+        /// <summary>
+        /// Update the state from a context
+        /// </summary>
+        /// <param name="context"></param>
         public override void StateUpdate(Context context)
         {
             context.State = new RunningState();
             context.Color = "green";
             context.StateName = "Running";
         }
-
+        /// <summary>
+        /// Overload for Stateupdate, with added status string
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="status"></param>
         public override void StateUpdate(Context context, string status)
         {
             switch(status){
@@ -123,49 +146,39 @@
 
     class Context
     {
-        private State state;
-        private string color;
-        private string stateName;
+        private State _state;
 
         public Context(State state)
         {
-            this.state = state;
-            color = "lightblue";
-            stateName = "Default";
+            _state = state;
+            Color = "lightblue";
+            StateName = "Default";
         }
 
         public State State
         {
-            get { return state; }
-            set { state = value; }
+            get { return _state; }
+            set { _state = value; }
 
         }
 
-        public string Color
-        {
-            get { return color; }
-            set { color = value; }
-        }
+        public string Color { get; set; }
 
-        public string StateName
-        {
-            get { return stateName; }
-            set { stateName = value; }
-        }
+        public string StateName { get; set; }
 
         public void ChangeState()
         {
-            state.StateUpdate(this);
+            _state.StateUpdate(this);
         }
 
         public void ChangeStateAlarm()
         {
-            state.StateUpdate(this, "alarm");
+            _state.StateUpdate(this, "alarm");
         }
 
         public void ChangeStateDefault()
         {
-            state.StateUpdate(this, "default");
+            _state.StateUpdate(this, "default");
         }
     }
 }

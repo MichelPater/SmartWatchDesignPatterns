@@ -4,68 +4,68 @@ using wStopwatch = System.Diagnostics.Stopwatch;
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Stopwatch
 {
-    class Stopwatch
+    class Stopwatch: ITime
     {
-        wStopwatch wsw;
-        Originator o;
-        CareTaker c;
-        Memento m;
-        Queue<string> mementoqueue;
-
-        public Stopwatch()
+        Originator _originator;
+        Queue<string> _mementoqueue;
+        /// <summary>
+        /// Create the Stopwatch and enqueque memento's
+        /// </summary>
+        public Stopwatch() 
         {
-            wsw = new wStopwatch();
+            WStopwatch = new wStopwatch();
 
-            o = new Originator();
+            _originator = new Originator();
 
-            c = new CareTaker();
+            CareTaker = new CareTaker();
 
-            m = o.CreateMemento();
+            Memento = _originator.CreateMemento();
 
-            mementoqueue = new Queue<string>(5);
+            _mementoqueue = new Queue<string>(5);
 
-            mementoqueue.Enqueue("00:00:00");
-            mementoqueue.Enqueue("00:00:00");
-            mementoqueue.Enqueue("00:00:00");
-            mementoqueue.Enqueue("00:00:00");
-            mementoqueue.Enqueue("00:00:00");
+            _mementoqueue.Enqueue("00:00:00");
+            _mementoqueue.Enqueue("00:00:00");
+            _mementoqueue.Enqueue("00:00:00");
+            _mementoqueue.Enqueue("00:00:00");
+            _mementoqueue.Enqueue("00:00:00");
             
         }
 
-        public wStopwatch wStopwatch
-        {
-            get { return wsw; }
-            set { wsw = value; }
-        }
+        public wStopwatch WStopwatch { get; set; }
 
         public Originator Originator
         {
-            get { return o; }
-            set { o = value; }
+            get { return _originator; }
+            set { _originator = value; }
         }
 
-        public CareTaker CareTaker
-        {
-            get { return c; }
-            set { c = value; }
-        }
+        public CareTaker CareTaker { get; set; }
 
-        public Memento Memento
-        {
-            get { return m;}
-            set { m = value; }
-        }
+        public Memento Memento { get; set; }
 
+        /// <summary>
+        /// Convert the memento to a list
+        /// </summary>
         public Queue<string> MementoList
         {
-            get { return mementoqueue; }
-            set { mementoqueue = value; }
+            get { return _mementoqueue; }
+            set { _mementoqueue = value; }
         }
 
-        public string getMementoFromQueue(int number)
+        /// <summary>
+        /// Get the memento from a queque
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public string GetMementoFromQueue(int number)
         {
 
-            return mementoqueue.ElementAt(number);
+            return _mementoqueue.ElementAt(number);
+        }
+
+        public string getTitle()
+        {
+            return "Stopwatch";
         }
     }
 }

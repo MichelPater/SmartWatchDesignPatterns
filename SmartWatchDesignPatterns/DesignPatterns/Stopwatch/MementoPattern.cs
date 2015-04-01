@@ -8,6 +8,7 @@
     {
         private string _savedTime;
 
+        //The savedStopwatch time
         public string savedTime
         {
             get { return _savedTime; }
@@ -19,23 +20,26 @@
             return (new Memento(_savedTime));
         }
 
-        public void setMemento(Memento memento)
+        public void SetMemento(Memento memento)
         {
-            savedTime = memento.savedTime;
+            savedTime = memento.SavedTime;
         }
-
     }
 
     class Memento
     {
-        private string _savedTime;
+        private readonly string _savedTime;
 
+        /// <summary>
+        /// Create a memento form a savedtime
+        /// </summary>
+        /// <param name="savedTime"></param>
         public Memento(string savedTime)
         {
             _savedTime = savedTime;
         }
 
-        public string savedTime
+        public string SavedTime
         {
             get { return _savedTime; }
         }
@@ -43,12 +47,6 @@
 
     class CareTaker
     {
-        private Memento _memento;
-
-        public Memento Memento
-        {
-            get { return _memento; }
-            set { _memento = value; }
-        }
+        public Memento Memento { get; set; }
     }
 }

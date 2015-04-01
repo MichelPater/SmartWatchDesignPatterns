@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using RedditSharp;
 using RedditSharp.Things;
@@ -10,7 +9,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     {
         private readonly Reddit _reddit = new Reddit();
         private readonly Subreddit _subreddit;
-        private int _amountOfPosts = 20;
+        private const int AmountOfPosts = 20;
 
         /// <summary>
         /// Default overload, takes subreddit as All
@@ -29,11 +28,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
         /// <returns></returns>
         public Collection GetPosts()
         {
-            var posts = new List<Post>();
-            foreach (var post in _subreddit.Hot.Take(_amountOfPosts))
-            {
-                posts.Add(post);
-            }
+            var posts = _subreddit.Hot.Take(AmountOfPosts).ToList();
             Collection postCollection = new Collection();
 
             for (int i = 0; i < posts.Count; i++)

@@ -4,9 +4,9 @@ using SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator;
 
 namespace SmartWatchDesignPatterns.DesignPatterns.Clock
 {
-   public class Clock
+   public class Clock : ITime
     {
-        private TimeSingelton _timeSingelton = TimeSingelton.UniqueInstance;
+        private readonly TimeSingelton _timeSingelton = TimeSingelton.UniqueInstance;
         private Iterator.Iterator _iterator;
         
        public Iterator.Iterator Iterator
@@ -21,14 +21,17 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
             get { return _post; }
             set { _post = value; }
         }
-
+       /// <summary>
+       /// Inistialize the clock and create posts
+       /// </summary>
         public Clock()
         {
-            var datetime = DateTime.Now;
-
             CreatePost();
         }
 
+       /// <summary>
+       /// Get the RedditPosts
+       /// </summary>
         private void CreatePost()
         {
             PostBuilder postBuilder = new PostBuilder();
@@ -37,15 +40,26 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock
             _iterator = new Iterator.Iterator(posts);
             _post = _iterator.CurrentItem;
         }
-
+       /// <summary>
+       /// Get a formatted Time String from a DateTime
+       /// </summary>
+       /// <returns></returns>
         public String GetStringFormattedTime()
         {
             return _timeSingelton.GetTime().ToString("HH:mm:ss");
         }
 
+       /// <summary>
+       /// Refresh the Posts
+       /// </summary>
        public void RefreshPosts()
        {
            CreatePost();
+       }
+
+       public string getTitle()
+       {
+           return "Clock";
        }
     }
 }

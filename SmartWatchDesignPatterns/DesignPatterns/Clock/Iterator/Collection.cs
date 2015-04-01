@@ -7,7 +7,7 @@ namespace SmartWatchDesignPatterns.DesignPatterns.Clock.Iterator
     /// </summary>
     public class Collection : IAbstractCollection
     {
-        private ArrayList _posts = new ArrayList();
+        private readonly ArrayList _posts = new ArrayList();
 
         public Iterator CreateIterator()
         {
